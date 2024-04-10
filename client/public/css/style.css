@@ -1,0 +1,560 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: rgba(240, 248, 255, 0.212);
+  height: 100%;
+  max-height: 100vh;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  line-height: 1;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a:link:visited {
+  color: aliceblue;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+
+input,
+select,
+option,
+optgroup,
+textarea,
+button,
+pre,
+code {
+  font-size: 100%;
+  font-family: inherit;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+/* navigation */
+
+.header-style {
+  background-image: linear-gradient(rgb(14, 14, 80), rgb(52, 52, 73));
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.sell,
+.sale {
+  padding: 1rem;
+  font-size: 2rem;
+  color: aliceblue;
+  position: relative;
+  transition: 0.2s;
+}
+
+.sell {
+  margin-left: 15%;
+}
+
+.sale {
+  margin-right: 15%;
+}
+
+.sell::after,
+.sale::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: aliceblue;
+  transform: scale(0);
+  transition: 0.2s all ease-out;
+}
+
+.sell:hover::after,
+.sale:hover::after {
+  cursor: pointer;
+  transform: scale(1); /* Scale along X-axis to expand */
+}
+
+.header-logo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  height: 110px;
+  background-image: linear-gradient(rgb(14, 14, 80) 15%, rgb(52, 52, 73) 85%);
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tab-1,
+.tab-2 {
+  height: 2rem;
+  font-size: 0.8rem;
+  position: relative;
+  background: rgba(52, 52, 73, 0.281);
+  margin: 0;
+}
+
+.tab-1 {
+  text-align: center;
+  width: 30%;
+  border-bottom-right-radius: 50px;
+}
+
+.tab-2 {
+  padding-left: 5%;
+  text-align: center;
+  width: 30%;
+  border-bottom-left-radius: 50px;
+}
+
+.tab-hover {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  padding: 0.5rem;
+  width: 30%;
+}
+
+.tab-hover::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: #333;
+  transform: scale(0);
+  transition: 0.2s all ease-out;
+}
+
+.tab-hover:hover::after {
+  cursor: pointer;
+  transform: scale(1); /* Scale along X-axis to expand */
+}
+
+@media screen and (width < 630px) {
+  .sell {
+    margin-left: 0%;
+    font-size: 1.5rem;
+  }
+  .sale {
+    margin-right: 0%;
+    font-size: 1.5rem;
+  }
+  .header-logo {
+    height: 85px;
+  }
+}
+
+/* footer */
+
+.footer-links:hover {
+  text-decoration: underline white;
+}
+
+.footer-links:hover:visited {
+  text-decoration: underline yellow;
+}
+
+.footer-links {
+  text-decoration: none;
+  color: aliceblue;
+}
+
+.footer {
+  margin-top: 3rem;
+  height: fit-content;
+  background: rgb(14, 14, 80);
+  color: aliceblue;
+  border-top: 3px solid red;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.footer-logo {
+  height: 110px;
+}
+
+.logo-column {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* //////// */
+
+/* HOMEPAGE */
+
+/* //////// */
+
+/* slides */
+
+.head-logo {
+  text-align: center;
+  font-size: 2rem;
+  margin: 0.6rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Slideshow container */
+
+.slide-img-size  {
+  height: 700px;
+  width: 1500px;
+  margin: 0 auto;
+}
+
+@media screen and (width < 1550px) {
+  .slide-img-size, .slideshow-container  {
+    height: 500px;
+    width: 1100px;
+  }
+}
+
+@media screen and (width < 1150px) {
+  .slide-img-size, .slideshow-container  {
+    width: 97%;
+    height: auto;
+  }
+}
+
+.slideshow-container {
+  max-width: 1500px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+.slide-img-style {
+  width: 100%;
+  border-radius: 0.3rem;
+  box-shadow: 4px 4px 10px #333;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 2.4s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* about */
+
+.about-us {
+  padding: 2rem;
+  border-top: 2px solid red;
+  border-right: 1px solid red;
+  border-image: linear-gradient(
+      to right,
+      rgb(255, 0, 0),
+      rgba(255, 255, 255, 0)
+    )
+    1 1%;
+  max-width: 1600px;
+  font-size: 1.2rem;
+  width: 90%;
+  margin: 0 auto;
+  text-indent: 1rem;
+}
+
+/* cards */
+
+.card-direction {
+  color: #f2f2f2;
+  display: flex;
+  background: rgb(35, 35, 70);
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 0.2rem;
+  box-shadow: 2px 2px 10px rgb(116, 116, 116);
+  padding: 2rem;
+  border-left: 6px solid red;
+  border-top: 1px solid red;
+}
+
+@media screen and (width < 850px) {
+  .card-direction {
+    flex-wrap: wrap;
+  }
+}
+
+.cards-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.about-flex {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+@media screen and (width < 450px) {
+  .about-flex {
+    flex-direction: column;
+  }
+  .photo {
+    width: fit-content;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (width > 700px) {
+  .about-flex {
+    flex-direction: row;
+  }
+}
+
+.name {
+  margin: 1rem 0;
+  border-bottom: 1px solid #f2f2f2;
+  border-image: linear-gradient(to right, white, rgba(255, 255, 255, 0)) 1 1%;
+}
+
+.creds {
+  margin: 0;
+  font-weight: bolder;
+  padding-bottom: 1rem;
+}
+
+.photo {
+  height: 200px;
+}
+
+.about {
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  padding-bottom: 2px;
+  padding-right: 2px;
+  border-image: linear-gradient(to top, white, rgba(0, 0, 0, 0)) 1 100%;
+}
+
+.about-wrap {
+  margin: 0 1rem;
+}
+
+@media screen and (width <= 1207) {
+}
+
+/* //////// */
+
+/* SELL */
+
+/* //////// */
+
+
+
+/* //////// */
+
+/* LOGIN/OUT MODAL */
+
+/* //////// */
+
+.exit-btn {
+  position: absolute;
+  padding: 1rem 1.25rem;
+  top: -35px;
+  right: -30px;
+  background: white;
+  color: red;
+  font-weight: 700;
+  font-size: 2rem;
+  border-radius: 50%;
+  width:fit-content;
+  border: 2px solid  rgb(35, 35, 70);
+  box-shadow: -1px 3px 10px 2px #333;
+  transition: .2s;
+}
+
+.exit-btn:hover {
+  cursor: pointer;
+  background: rgb(223, 223, 223);
+  font-size: 2.2rem;
+}
+
+.exit-btn:hover:active {
+  background: rgb(190, 190, 190);
+  font-size: 2rem;
+}
+
+.login-card {
+  z-index: 1000;
+  height: 35%;
+  color: #333;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: -40%;
+  border-radius: 1rem;
+  width: 25%;
+  max-width: 600px;
+  min-height: 400px;
+  min-width: 360px;
+  border: 3px solid  rgb(35, 35, 70);
+  padding: 2rem;
+  background: white;
+  transition: top 0.5s;
+}
+
+.blur-back {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  backdrop-filter: blur(0px);
+  z-index: 999;
+}
+
+.card-elem-pos {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+}
+
+.loginout-input-style {
+  margin: 1rem;
+  border:1px solid rgb(35, 35, 70);
+  border-radius: .2rem;
+}
+
+.loginout-title {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.input-example {
+  font-size: 1.3rem;
+  margin: .5rem;
+}
+
+#signIn, #signUp {
+  padding: .3rem 1rem;
+  background-color: rgb(35, 35, 70);
+  color: white;
+  border-radius: .5rem;
+  margin-bottom: 1rem;
+}
+
+#signInForm {
+  color: purple;
+}
+
+#signInForm:hover {
+  text-decoration: underline;
+}

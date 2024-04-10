@@ -1,0 +1,12 @@
+[
+    {
+        "company": "MicahCo",
+        "description": "owned by Micah Allen",
+        "cost": "100,000"
+    },
+    {
+        "company": "CharlieCo",
+        "description": "owned by Charlie Tiffany",
+        "cost": "100,000"
+    }
+]

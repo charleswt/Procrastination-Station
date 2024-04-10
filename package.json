@@ -1,0 +1,24 @@
+{
+    "name": "Unity",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "start:dev": "concurrently \"cd server && npm run server\" \"cd client && npm run dev\"",
+        "start": "npm run build && cd server && node server.js",
+        "server": "cd server && nodemon server.js --ignore client",
+        "build": "cd client && npm run build",
+        "install": "cd server && npm i && cd ../client && npm i",
+        "client": "cd client && npm start",
+        "seed": "node server/seeds/seed.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "concurrently": "^8.2.0"
+    },
+    "dependencies": {
+        "dotenv": "^16.4.5"
+    }
+}
