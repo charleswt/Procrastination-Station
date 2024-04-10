@@ -2,22 +2,39 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
-    email: {
+    username: {
         type: String,
         required: true,
         unique: true,
-        validate: /^\S+@\S+\.\S+$/
     },
     password: {
         type: String,
         required: true,
     },
-    posts: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Post'
-        }
-    ]
+    tttWins: {
+        type: Number,
+        require: true,
+    },
+    snakeWins: {
+        type: Number,
+        require: true,
+    },
+    pongWins: {
+        type: Number,
+        require: true,
+    },
+    tttWins: {
+        type: Number,
+        require: true,
+    },
+    snakeWins: {
+        type: Number,
+        require: true,
+    },
+    pongWins: {
+        type: Number,
+        require: true,
+    }
 });
 
 // Hash the password before saving
