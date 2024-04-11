@@ -1,5 +1,5 @@
-import ReactDOM from 'react-dom/client'
-import './style.css'
+import ReactDOM from 'react-dom/client';
+import './style.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // pages imports
