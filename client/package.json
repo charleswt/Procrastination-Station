@@ -1,5 +1,5 @@
 {
-    "name": "name",
+    "name": "Procrastination-Station",
     "description": "description",
     "scripts": {
         "dev": "webpack-dev-server",

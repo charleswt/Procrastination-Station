@@ -3,7 +3,6 @@ const session = require('express-session');
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 const path = require('path');
-const routes = require('./routes')
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
@@ -33,7 +32,6 @@ const startApolloServer = async () => {
 
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
-  app.use(routes)
   
   if (process.env.NODE_ENV === 'production' || !process.env.NODE_ENV) {
     app.use(express.static(path.join(__dirname, '../client/dist')));
