@@ -22,6 +22,10 @@ const userSchema = new Schema({
     pong: {
         type: String,
         required: true,
+    },
+    dino: {
+        type: String,
+        required: true,
     }
 });
 

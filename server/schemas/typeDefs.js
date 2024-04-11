@@ -1,17 +1,13 @@
 const typeDefs = 
 `type users {
     _id: ID
-    email: String
     password: String
-    posts: [Post]
+    ttt: String
+    snake: String
+    pong: String
+    dino: String
 }
 
-type Post {
-    _id: ID
-    company: String
-    description: String
-    cost: String
-}
 
 type Query {
     users: [users]
