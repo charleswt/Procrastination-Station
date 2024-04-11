@@ -11,33 +11,20 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    tttWins: {
-        type: Number,
-        require: true,
+    ttt: {
+        type: String,
+        required: true,
     },
-    snakeWins: {
-        type: Number,
-        require: true,
+    snake: { // example `Wins: ${win} Loses: ${loss}`
+        type: String,
+        required: true,
     },
-    pongWins: {
-        type: Number,
-        require: true,
-    },
-    tttWins: {
-        type: Number,
-        require: true,
-    },
-    snakeWins: {
-        type: Number,
-        require: true,
-    },
-    pongWins: {
-        type: Number,
-        require: true,
+    pong: {
+        type: String,
+        required: true,
     }
 });
 
-// Hash the password before saving
 userSchema.pre('save', async function(next) {
     if (!this.isModified('password')) {
         return next();
@@ -51,7 +38,6 @@ userSchema.pre('save', async function(next) {
     }
 });
 
-// Method to compare passwords
 userSchema.methods.comparePassword = async function(candidatePassword) {
     try {
         return await bcrypt.compare(candidatePassword, this.password);
