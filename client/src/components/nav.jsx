@@ -1,45 +1,37 @@
-const StyledBreadcrumb = styled(Chip)(({ theme }) => {
-    const backgroundColor =
-      theme.palette.mode === 'light'
-        ? theme.palette.grey[100]
-        : theme.palette.grey[800];
-    return {
-      backgroundColor,
-      height: theme.spacing(3),
-      color: theme.palette.text.primary,
-      fontWeight: theme.typography.fontWeightRegular,
-      '&:hover, &:focus': {
-        backgroundColor: emphasize(backgroundColor, 0.06),
-      },
-      '&:active': {
-        boxShadow: theme.shadows[1],
-        backgroundColor: emphasize(backgroundColor, 0.12),
-      },
-    };
-  }); // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
-  
-  function handleClick(event) {
-    event.preventDefault();
-    console.info('You clicked a breadcrumb.');
-  }
-  
-  export default function Nav() {
-    return (
-      <div role="presentation" onClick={handleClick}>
-        <Breadcrumbs aria-label="breadcrumb">
-          <StyledBreadcrumb
-            component="a"
-            href="#"
-            label="Home"
-            icon={<HomeIcon fontSize="small" />}
-          />
-          <StyledBreadcrumb component="a" href="#" label="Catalog" />
-          <StyledBreadcrumb
-            label="Accessories"
-            deleteIcon={<ExpandMoreIcon />}
-            onDelete={handleClick}
-          />
-        </Breadcrumbs>
-      </div>
-    );
-  }
+import * as React from 'react';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+
+function handleClick(event) {
+  event.preventDefault();
+  alert("render login modal")
+}
+
+export default function ActiveLastBreadcrumb() {
+  return (
+    <div role="presentation" onClick={handleClick}>
+      <Breadcrumbs aria-label="breadcrumb">
+        <Link underline="hover" color="inherit" href="/">
+          Home
+        </Link>
+        <Link
+          underline="hover"
+          color="text.primary"
+          href="/material-ui/react-breadcrumbs/"
+          aria-current="page"
+        > Login
+        </Link>
+      </Breadcrumbs>
+      <React.Fragment>
+      <CssBaseline />
+      <Container maxWidth="sm">
+        <img src="../public/images/logo.webp" 
+        sx={{ bgcolor: '#cfe8fc', height: '25vh' }}/>
+      </Container>
+    </React.Fragment>
+    </div>
+  );
+}

@@ -1,9 +1,9 @@
-import { ScoreCards } from '../components/scores/scores'
+import ScoreCard from '../components/ScoreCard'
 
 const Games = () => {
     return (
         <div> Profile Page
-            <ScoreCards />
+            <ScoreCard />
         </div>
     )
 }
