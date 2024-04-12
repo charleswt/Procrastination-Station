@@ -7,6 +7,10 @@ import App from './app.jsx'
 import Home from './pages/home.jsx'
 import Error from './pages/error.jsx'
 import Profile from './pages/profile.jsx'
+import Snake from './pages/snake.jsx'
+import TTT from './pages/ttt.jsx'
+import Pong from './pages/pong.jsx'
+import Dino from './pages/dino.jsx'
 
 // router set up
 const router = createBrowserRouter([
@@ -20,8 +24,20 @@ const router = createBrowserRouter([
           element: <Home />
         },
         {
-            path: '/profile/:id',
-            element: <Profile />
+            path: '/snake',
+            element: <Snake />
+          },
+          {
+            path: '/dino',
+            element: <Dino />
+          },
+          {
+            path: '/ttt',
+            element: <TTT />
+          },
+          {
+            path: '/pong',
+            element: <Pong />
           }
       ]
     }

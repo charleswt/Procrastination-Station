@@ -2,7 +2,7 @@ import GameDisplayCards from '../components/gameDisplayCards'
 
 const Home = () => {
     return (
-        <div> Home page 
+        <div> 
             <GameDisplayCards /> 
             {/* if card clicked then render GamePlay.jsx component */}
         </div>
