@@ -8,7 +8,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import Nav from './src/components/nav';
-import Footer from './src/components/footer'
+import Footer from './src/components/footer/footer'
 
 // setting up httpLink
 const httpLink = createHttpLink({
