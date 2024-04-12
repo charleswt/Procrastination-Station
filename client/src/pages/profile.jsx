@@ -1,4 +1,4 @@
-import { ScoreCards } from '../components/scoreCard'
+import ScoreCards from '../components/scoreCard'
 
 const Games = () => {
     return (
