@@ -3,13 +3,13 @@ import './style.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // pages imports
-import Dino from './src/pages/dino.jsx'
-import Games  from './src/pages/games.jsx'
-import Pong from './src/pages/pong.jsx'
-import Snake from './src/pages/snake.jsx'
-import TTT from './src/pages/ttt.jsx'
-import Error from './src/pages/error.jsx'
-import Profile from './src/pages/profile.jsx'
+import Home from './pages/home.jsx'
+import Dino from './pages/dino.jsx'
+import Pong from './pages/pong.jsx'
+import Snake from './pages/snake.jsx'
+import TTT from './pages/ttt.jsx'
+import Error from './pages/error.jsx'
+import Profile from './pages/profile.jsx'
 
 // router set up
 const router = createBrowserRouter([
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
       children: [
         {
           index: true, 
-          element: <Games />
+          element: <Home />
         },
         {
             path: '/profile/:id',
