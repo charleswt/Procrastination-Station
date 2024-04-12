@@ -1,12 +1,82 @@
 [
     {
-        "company": "MicahCo",
-        "description": "owned by Micah Allen",
-        "cost": "100,000"
+        "username": "Micah",
+        "password": "1234",
+        "ttt": "Wins: 3  Losses: 5",
+        "snake": "Wins: 3  Losses: 5",
+        "pong": "Wins: 3  Losses: 5",
+        "dino": "Wins: 3  Losses: 5"
     },
     {
-        "company": "CharlieCo",
-        "description": "owned by Charlie Tiffany",
-        "cost": "100,000"
+        "username": "Charlie",
+        "password": "1234",
+        "ttt": "Wins: 6  Losses: 4",
+        "snake": "Wins: 4  Losses: 6",
+        "pong": "Wins: 5  Losses: 5",
+        "dino": "Wins: 2  Losses: 8"
+    },
+    {
+        "username": "Alice",
+        "password": "1234",
+        "ttt": "Wins: 1  Losses: 7",
+        "snake": "Wins: 8  Losses: 2",
+        "pong": "Wins: 4  Losses: 6",
+        "dino": "Wins: 3  Losses: 5"
+    },
+    {
+        "username": "Bob",
+        "password": "1234",
+        "ttt": "Wins: 4  Losses: 6",
+        "snake": "Wins: 7  Losses: 3",
+        "pong": "Wins: 2  Losses: 8",
+        "dino": "Wins: 5  Losses: 5"
+    },
+    {
+        "username": "Eva",
+        "password": "1234",
+        "ttt": "Wins: 7  Losses: 3",
+        "snake": "Wins: 2  Losses: 8",
+        "pong": "Wins: 6  Losses: 4",
+        "dino": "Wins: 4  Losses: 6"
+    },
+    {
+        "username": "David",
+        "password": "1234",
+        "ttt": "Wins: 5  Losses: 5",
+        "snake": "Wins: 3  Losses: 7",
+        "pong": "Wins: 7  Losses: 3",
+        "dino": "Wins: 2  Losses: 8"
+    },
+    {
+        "username": "Sophie",
+        "password": "1234",
+        "ttt": "Wins: 6  Losses: 4",
+        "snake": "Wins: 6  Losses: 4",
+        "pong": "Wins: 2  Losses: 8",
+        "dino": "Wins: 5  Losses: 5"
+    },
+    {
+        "username": "Liam",
+        "password": "1234",
+        "ttt": "Wins: 2  Losses: 8",
+        "snake": "Wins: 4  Losses: 6",
+        "pong": "Wins: 8  Losses: 2",
+        "dino": "Wins: 5  Losses: 5"
+    },
+    {
+        "username": "Olivia",
+        "password": "1234",
+        "ttt": "Wins: 8  Losses: 2",
+        "snake": "Wins: 5  Losses: 5",
+        "pong": "Wins: 3  Losses: 7",
+        "dino": "Wins: 4  Losses: 6"
+    },
+    {
+        "username": "Noah",
+        "password": "1234",
+        "ttt": "Wins: 3  Losses: 7",
+        "snake": "Wins: 6  Losses: 4",
+        "pong": "Wins: 4  Losses: 6",
+        "dino": "Wins: 6  Losses: 4"
     }
 ]

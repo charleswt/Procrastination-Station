@@ -12,19 +12,19 @@ const userSchema = new Schema({
         required: true,
     },
     ttt: {
-        type: Number,
+        type: String,
         required: true,
     },
-    snake: { // example `Wins: ${win} Loses: ${loss}`
-        type: Number,
+    snake: { // example `Wins: ${win}  Loses: ${loss}`
+        type: String,
         required: true,
     },
     pong: {
-        type: Number,
+        type: String,
         required: true,
     },
     dino: {
-        type: Number,
+        type: String,
         required: true,
     }
 });
