@@ -1,12 +1,11 @@
 import ReactDOM from 'react-dom/client';
-import './style.css';
+import '../public/css/style.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // pages imports
 import App from './app.jsx'
 import Home from './pages/home.jsx'
 import Error from './pages/error.jsx'
-import Profile from './pages/profile.jsx'
 import Snake from './pages/snake.jsx'
 import TTT from './pages/ttt.jsx'
 import Pong from './pages/pong.jsx'
