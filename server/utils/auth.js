@@ -5,11 +5,11 @@ const exp = '3h'
 const randSecret = crypto.randomBytes(64).toString('hex')
 
 module.exports = {
-    randKey: () => {
+    randKey: ()=>{
         crypto.randomBytes(64).toString('hex');
     },
 
-    authentication: ({ req }) => {
+    authentication: ({ req })=>{
         let token = req.body.token || req.query.token || req.headers.auth;
 
         if (req.headers.authorization) {

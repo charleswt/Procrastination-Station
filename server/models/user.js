@@ -15,7 +15,7 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    snake: { // example `Wins: ${win} Loses: ${loss}`
+    snake: { // example `Wins: ${win}  Loses: ${loss}`
         type: String,
         required: true,
     },
