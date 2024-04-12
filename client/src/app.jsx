@@ -7,16 +7,16 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import Nav from './src/components/nav';
-import Footer from './src/components/footer/footer'
+import Nav from './components/nav';
+import Footer from './components/footer'
 
 // setting up httpLink
-const httpLink = createHttpLink({
+const link = createHttpLink({
   uri: '/graphql',
 });
 
 // adds auth token from local storage to bearer header specified
-const authLink = setContext((_, { headers }) => {
+const authentication = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
   return {
     headers: {
@@ -28,7 +28,7 @@ const authLink = setContext((_, { headers }) => {
 
 // ApolloClient is instantiated with authLink added to httplink and new memory cache created
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: authentication.concat(link),
   cache: new InMemoryCache(),
 });
 
