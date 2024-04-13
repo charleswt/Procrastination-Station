@@ -1,64 +1,74 @@
-const { User } = require('../models');
+const User = require('../models/user');
 const { packToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
     Query: {
         getUsers: async () => {
-            return await User.find()
+            return await User.find();
         },
-        getUser: async (username) => {
-            return await User.findOne({username})
+        getUser: async (_, { username }) => {
+            return await User.findOne({ username });
         },
-        getTtt: async (username) => {
-            const user = User.findOne({username})
-            return user.ttt
+        getTtt: async (_, { username }) => {
+            const user = await User.findOne({ username });
+            return user ? user.ttt : null;
         },
-        getSnake: async (username) => {
-            const user = User.findOne({username})
-            return user.snake
+        getSnake: async (_, { username }) => {
+            const user = await User.findOne({ username });
+            return user ? user.snake : null;
         },
-        getPong: async (username) => {
-            const user = User.findOne({username})
-            return user.pong
+        getPong: async (_, { username }) => {
+            const user = await User.findOne({ username });
+            return user ? user.pong : null;
         },
-        getDino: async (username) => {
-            const user = User.findOne({username})
-            return user.dino
+        getDino: async (_, { username }) => {
+            const user = await User.findOne({ username });
+            return user ? user.dino : null;
         }
     },
-    mutations: {
-        addUser: async (res, { username, password })=>{
-            const ttt = 0;
-            const snake = 0;
-            const pong = 0;
-            const dino = 0;
+    Mutation: {
+        addUser: async (parent, { username, password })=>{
+            const ttt = '0';
+            const snake = '0';
+            const pong = '0';
+            const dino = '0';
 
-            const existingUser = User.findOne({ username });
-            if(existingUser) return { userExists: 'Username Taken!' };
+            console.log(username, password)
             
             try{
-                const userData = User.create({ username, password, ttt, snake, pong, dino })
-                const token = packToken(userData)
-                return { token, userData }
+                const user = User.create({ username, password, ttt, snake, pong, dino })
+                const token = packToken(user)
+                return { token, user }
             } catch (err){
-                console.log('Error creating user');
-                res.status(400).json({ message: 'Error creating user' }, err)
+                console.log(username, password)
+                console.log(err,'Error creating user');
             }
-            
         },
-        login: async (res, { username, password })=> {
+        login: async ( parent, { username, password })=> {
             const user = await user.findOne({username})
-            if (!user) return res.json(false, { message: 'Incorrect username' })
+            if (!user) return console.log('Incorrect username')
 
             const passAuth = await user.isCorrectPassword(password);
 
-            if(!passAuth) return res.json(false, { message: 'Incorrect password' })
+            if(!passAuth) return console.log('Incorrect password')
 
             const token = packToken(user);
 
             return { token, user }
         },
+        updateTtt: async (_, { username, ttt }) => {
+            
+        },
+        updateSnake: async (_, { username, snake }) => {
+            
+        },
+        updatePong: async (_, { username, pong }) => {
+            
+        },
+        updateDino: async (_, { username, dino }) => {
+            
+        }
     }
-}
+};
 
 module.exports = resolvers;

@@ -1,34 +1,63 @@
 import React, { useState, useEffect } from 'react';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER, ADD_USER } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 import '../../../public/css/style.css';
 
 export default function Header() {
+    const isLoggedIn = Auth.getToken();
+    if(isLoggedIn) {isLoggedIn === true} else {isLoggedIn === false}
+    const [formState, setFormState] = useState({ username: '', password: '' });
+    const [login] = useMutation(LOGIN_USER);
+    const [signUp] = useMutation(ADD_USER);
+    const [loginForm, setLogin] = useState(false);
+    const [signupForm, setSignup] = useState(false);
 
-    // signin
+    const handleChange = event => {
+        const { name, value } = event.target;
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+    };
 
-    const [loginState, setLoginState] = useState({ username: '', password: '' });
-    
+    const handleLoginFormSubmit = async event => {
+        event.preventDefault();
+        
+            const { data } = await login({
+                variables: { ...formState },
+            });
+            Auth.login(data.login.token);
+            console.log(Auth.login(data.login.token))
+        
+    };
 
-    // signup
-
-
-    // modal open/close/change and animation
-    const [login, setLogin] = useState(false);
-    const [signup, setSignup] = useState(false);
+    const handleSignupFormSubmit = async event => {
+        event.preventDefault();
+            const { data } = await signUp({
+                variables: { ...formState },
+            });
+            console.log({...formState})
+            console.log(signUp())
+            console.log(data.signUp.token)
+            Auth.login(data.signUp.token);
+            console.log(Auth.login(data.signUp.token))
+    };
 
     const toggleLogin = () => {
-        setLogin(!login);
-    };  
+        setLogin(!loginForm);
+    }; 
 
     const toggleSignup = () => {
-        setSignup(!signup);
+        setSignup(!signupForm);
         setLogin(false);
     };    
 
     useEffect(() => {
-        if (login || signup) {
+        if (loginForm || signupForm) {
             cardAnimation();
         }
-    }, [login, signup]);
+    }, [loginForm, signupForm]);
 
     const cardAnimation = () => {
         const blurBack = document.querySelector(".blur-back");
@@ -62,32 +91,20 @@ export default function Header() {
 
     return (
         <>
-
-                
-
-
-            {/* TOMPORARY FOR DESIGN */}
             <header>
                 <img src="./public/images/logo.webp" alt="logo" className="header-logo" />
                 <div className='header-flex-direction'>
                         <p className='header-tag header-elem-position'>Procrastination Station</p>
                         <p className='header-donate header-elem-position'>Donate</p>
+                        {isLoggedIn ? ( 
+                        <p className='header-login header-elem-position' onClick={toggleLogout}>Logout</p>
+                    ) : ( 
                         <p className='header-login header-elem-position' onClick={toggleLogin}>Login</p>
+                    )}
                 </div>
             </header>
 
-
-                    
-                        {/* FOR ACTUAL USE */}
-            {/* <header>
-            {isLoggedIn ? ( 
-                        <button onClick={toggleLogout}>Logout</button>
-                    ) : ( 
-                        <button onClick={toggleLogin}>Login</button>
-                    )}
-            </header> */}
-
-            {login &&
+            {loginForm &&
                 <>
                     <div className="blur-back" onClick={closeLogin}></div>
                     <div className="login-card">
@@ -96,19 +113,29 @@ export default function Header() {
                             <h2 className="loginout-title">Login</h2>
 
                             <p className="input-example">Username :</p>
-                            <input type="text" className="loginout-input-style email-input"></input>
+                            <input className="loginout-input-style email-input"
+                            placeholder="Your username"
+                            name="username"
+                            type="username"
+                            value={formState.username}
+                            onChange={handleChange}/>
 
-                            <p className="input-example">Password :</p>
-                            <input type="text" className="loginout-input-style password-input"></input>
-                            <button id="signIn">Login</button>
+                            <p className="input-example">Password :</p>    
+                            <input className="loginout-input-style password-input"
+                            placeholder="******"
+                            name="password"
+                            type="password"
+                            value={formState.password}
+                            onChange={handleChange}/>
+                            <button id="signIn" onClick={handleLoginFormSubmit}>Login</button>
                             <p>Don't have an account? <a id="signInForm" onClick={toggleSignup}>Sign Up</a></p>
                         </div>
                     </div>
                 </>
             }
            
-            {signup &&
-                <> 
+            {signupForm &&
+            <>
                     <div className="blur-back" onClick={closeLogin}></div>
                     <div className="login-card">
                         <p className='exit-btn' onClick={closeLogin}>X</p>
@@ -116,14 +143,24 @@ export default function Header() {
                             <h2 className="loginout-title">Sign Up</h2>
 
                             <p className="input-example">Username :</p>
-                            <input type="text" className="loginout-input-style email-input"></input>
+                            <input className="loginout-input-style email-input"
+                            placeholder="Your username"
+                            name="username"
+                            type="username"
+                            value={formState.username}
+                            onChange={handleChange}/>
                     
                             <p className="input-example">Password :</p>    
-                            <input type="text" className="loginout-input-style password-input"></input>  
-                            <button id="signUp">Sign Up</button>
+                            <input className="loginout-input-style password-input"
+                            placeholder="******"
+                            name="password"
+                            type="password"
+                            value={formState.password}
+                            onChange={handleChange}/>  
+                            <button id="signUp" onClick={handleSignupFormSubmit}>Sign Up</button>
                         </div>
                     </div>
-                </> 
+                    </>
             }
         </>
     );

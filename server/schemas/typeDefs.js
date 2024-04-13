@@ -1,5 +1,5 @@
 const typeDefs = 
-`type users {
+`type User {
   _id: ID
   username: String
   password: String
@@ -9,22 +9,27 @@ const typeDefs =
   dino: String
 }
 
-type Query {
-  getUsers: [users]
-  getUser(username: String!)
-  getTtt(username: String!)
-  getSnake(username: String!)
-  getPong(username: String!)
-  getDino(username: String!)
+type Auth {
+  token: ID!
+  user: User
 }
 
-type Mutations {
-  createUser(username: String!, password!): Auth
+type Query {
+  getUsers: [User]
+  getUser(username: String!): User
+  getTtt(username: String!): User
+  getSnake(username: String!): User
+  getPong(username: String!): User
+  getDino(username: String!): User
+}
+
+type Mutation {
+  addUser(username: String!, password: String!): Auth
   login(username: String!, password: String!): Auth
-  updateTtt(winLossValue: Number!)
-  updateSnake(winLossValue: Number!) 
-  updatePong(winLossValue: Number!) 
-  updateDino(winLossValue: Number!) 
+  updateTtt(username: String!): User
+  updateSnake(username: String!): User
+  updatePong(username: String!): User
+  updateDino(username: String!): User
 }
 `
 // Dino we can just save the time played and update it every time the time played is higher than the one in currently saved in the DB

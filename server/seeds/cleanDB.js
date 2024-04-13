@@ -1,14 +1,14 @@
-const { User} = require('../models');
+const User = require('../models/user');
 
 module.exports = async (modelName, collectionName) => {
     try {
         // Check if the model name is valid
-        if (!modelName === 'User') {
+        if (modelName !== 'User') {
             throw new Error('Invalid model name');
         }
 
-        // Delete all documents from the specified collection
-        const deleteResult = await modelName.deleteMany({});
+        // Delete all documents from the User collection
+        const deleteResult = await User.deleteMany({});
 
         console.log(`Deleted ${deleteResult.deletedCount} documents from ${collectionName} collection`);
     } catch (error) {

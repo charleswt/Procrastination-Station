@@ -19,6 +19,10 @@ export const ADD_USER = gql`
       user {
         _id
         username
+        ttt
+        snake
+        pong
+        dino
       }
     }
   }
