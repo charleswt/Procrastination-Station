@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import '../../../public/css/style.css';
 
 export default function Header() {
+
+
+
+
+    // modal open/close/change and animation
     const [login, setLogin] = useState(false);
     const [signup, setSignup] = useState(false);
 
@@ -52,15 +57,30 @@ export default function Header() {
 
     return (
         <>
-            <div id="hero">
-                <h1> Procrastination Station </h1>
-            </div>
 
-            <nav>
-                <div>
-                    <button onClick={toggleLogin}>Login</button>
+                
+
+
+            {/* TOMPORARY FOR DESIGN */}
+            <header>
+                <img src="./public/images/logo.webp" alt="logo" className="header-logo" />
+                <div className='header-flex-direction'>
+                        <p className='header-tag header-elem-position'>Procrastination Station</p>
+                        <p className='header-donate header-elem-position'>Donate</p>
+                        <p className='header-login header-elem-position' onClick={toggleLogin}>Login</p>
                 </div>
-            </nav>
+            </header>
+
+
+                    
+                        {/* FOR ACTUAL USE */}
+            {/* <header>
+            {isLoggedIn ? ( 
+                        <button onClick={toggleLogout}>Logout</button>
+                    ) : ( 
+                        <button onClick={toggleLogin}>Login</button>
+                    )}
+            </header> */}
 
             {login &&
                 <>

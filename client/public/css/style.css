@@ -5,7 +5,7 @@
 }
 
 html {
-  background-color: rgb(225, 227, 230);
+  background-color: white;
   height: 100%;
   max-height: 100vh;
   scroll-behavior: smooth;
@@ -48,61 +48,154 @@ ul {
   list-style: none;
 }
 
+/* ///////// */
+/* games.jsx */
+/* ///////// */
+
 .gameContainer {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 2000px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 2000px;
 }
 
 .singleGame {
-    text-align: center;
-    background:rgb(143, 188, 188);
-    height: 300px;
-    width: 100%;
-    margin: 2rem 0;
+  text-align: center;
+  background: rgb(241, 241, 241);
+  max-height: 300px;
+  width: 100%;
+  margin: 4rem 0;
+  box-shadow: 0px 0px 10px 2px rgb(46, 46, 46);
 }
 
 .hero{
-    height: 400px;
-    display:block;
-}
-
-h1{ 
-    text-align: center;
-    font-optical-sizing: auto;
-    font-weight: 700;
-    font-style: normal;
-}
-
-nav {
-    background-color:  rgba(168, 206, 206,);
+  width: 100%;
+  max-width: 1600px;
 }
 
 footer {
   text-align: center;
-    position: relative;
-    bottom: 0;
+  position: relative;
+  bottom: 0;
 }
 
-button {
-    position: relative;
-    display: block;
-    margin-right: 0px;
-    margin-left: auto;
+.main-play-btn {
+  background-color: red;
+  padding: 1rem;
+  border: 1ps solid grey;
 }
 
-img{
-    -webkit-mask-image:-webkit-gradient(linear, right, left, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
-    mask-image: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
-    display: block;
-    height: 300px;
+.games-flex-direction {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-/* /////////////// */
+.game-tag {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.game-name-tag {
+  margin: 1rem;
+  font-size: 4rem;
+}
+
+.game-img {
+  background-color: rgb(241, 241, 241);
+  mask-image: linear-gradient(to right,
+   rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,.8), rgba(0,0,0,.6), rgba(0,0,0,.4), rgba(0,0,0,0) );
+  display: flex;
+  align-items: start;
+  height: 300px;
+}
+
+/* ////////// */
+/* header.jsx */
+/* ////////// */
+
+.header-logo {
+  border-right: 2px solid red;
+  z-index: 999;
+  max-height: 100%;
+  width: auto; 
+  position: absolute;
+  top: 0; 
+  left: 0;
+}
+
+.header-flex-direction {
+  display: flex;
+  justify-content: end;
+}
+
+.header-tag {
+  top: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, .4);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  font-size: 4rem;
+  border-bottom:2px solid red;
+}
+
+.header-elem-position {
+  font-size: 2rem;
+}
+
+.header-login {
+  position: absolute;
+  color: white;
+  right: 3%;
+  margin: 1rem;
+  border-radius: .2rem;
+  margin-top: 5%;
+  padding: .5rem;
+}
+
+.header-donate {
+  position: absolute;
+  color: white;
+  right: 15%;
+  margin: 1rem;
+  border-radius: .2rem;
+  margin-top: 5%;
+  padding: .5rem;
+}
+
+.header-donate::after, .header-login::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  background: red;
+  transform: scale(0);
+  transition: .2s all ease-out;
+}
+
+.header-donate:hover::after, .header-login:hover::after {
+  cursor: pointer;
+  transform: scale(1);
+}
+
+header {
+  max-height: 10vh;
+  position: absolute;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  background-color: rgba(51, 51, 51, .4);
+  height: 10vh;
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
+  border-image: linear-gradient(to top, red, rgba(255,0,0,0))1 100%;
+}
+
 /* LOGIN/OUT MODAL */
-/* /////////////// */
-
-
 .exit-btn {
   position: absolute;
   padding: 1rem 1.25rem;
@@ -140,7 +233,7 @@ img{
   margin: auto;
   left: 0;
   right: 0;
-  top: -30%;
+  top: -40%;
   border-radius: 1rem;
   width: 25%;
   max-width: 600px;
@@ -201,3 +294,6 @@ img{
 #signInForm:hover {
   text-decoration: underline;
 }
+
+/* header */
+

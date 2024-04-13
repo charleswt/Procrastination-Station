@@ -1,4 +1,4 @@
-import GameDisplayCards from '../components/gameDisplayCards'
+import GameDisplayCards from '../components/games/games'
 
 const Home = () => {
     return (
