@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import '../../../public/css/style.css';
 
 export default function Header() {
-
-
-
+    // signup
+    
 
     // modal open/close/change and animation
     const [login, setLogin] = useState(false);

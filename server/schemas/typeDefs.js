@@ -1,16 +1,28 @@
 const typeDefs = 
 `type users {
-    _id: ID
-    password: String
-    ttt: String
-    snake: String
-    pong: String
-    dino: String
+  _id: ID
+  username: String
+  password: String
+  ttt: String
+  snake: String
+  pong: String
+  dino: String
 }
 
-
 type Query {
-    users: [users]
-}`
+  users: [users]
+}
+
+type Mutations {
+  createUser(username: String!, password!): Auth
+  login(username: String!, password: String!): Auth
+  updateTtt()
+  updateDino() 
+  updateSnake() 
+}
+`
+// Dino we can just save the time played and update it every time the time played is higher than the one in currently saved in the DB
+// Snake we do the same thing but with points
+// Tic tac toe we can send 0 if loss and 1 if win and then just do an turnery argument call the user query to get user data from ttt that will give us a string that we need to splice then increment the win or loss value from the resulting array(position 1(wins) or 3(losses)) then save it back to that user
 
 module.exports = typeDefs;
