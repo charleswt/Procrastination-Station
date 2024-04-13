@@ -6,6 +6,7 @@ const cookies = new Cookies()
 class AuthCookieToken {
     login(token) {
         cookies.set('toke_auth', token);
+        window.location.reload();
     }
 
     getToken() {
@@ -32,3 +33,5 @@ class AuthCookieToken {
         return false;
     }
 }
+
+export default new AuthCookieToken()

@@ -2,8 +2,14 @@ import React, { useState, useEffect } from 'react';
 import '../../../public/css/style.css';
 
 export default function Header() {
-    // signup
+
+    // signin
+
+    const [loginState, setLoginState] = useState({ username: '', password: '' });
     
+
+    // signup
+
 
     // modal open/close/change and animation
     const [login, setLogin] = useState(false);
