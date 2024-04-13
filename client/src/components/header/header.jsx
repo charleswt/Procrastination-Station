@@ -6,7 +6,6 @@ import '../../../public/css/style.css';
 
 export default function Header() {
     const isLoggedIn = Auth.getToken();
-    if(isLoggedIn) {isLoggedIn === true} else {isLoggedIn === false}
     const [formState, setFormState] = useState({ username: '', password: '' });
     const [login] = useMutation(LOGIN_USER);
     const [signUp] = useMutation(ADD_USER);
@@ -27,8 +26,8 @@ export default function Header() {
             const { data } = await login({
                 variables: { ...formState },
             });
+            console.log(data)
             Auth.login(data.login.token);
-            console.log(Auth.login(data.login.token))
         
     };
 
@@ -37,21 +36,18 @@ export default function Header() {
             const { data } = await signUp({
                 variables: { ...formState },
             });
-            console.log({...formState})
-            console.log(signUp())
-            console.log(data.signUp.token)
-            Auth.login(data.signUp.token);
-            console.log(Auth.login(data.signUp.token))
+             //when grabbing token from data make sure you are referencing resolvers in server utils
+            Auth.login(data.addUser.token);
     };
 
     const toggleLogin = () => {
         setLogin(!loginForm);
-    }; 
+    };
 
     const toggleSignup = () => {
         setSignup(!signupForm);
         setLogin(false);
-    };    
+    };
 
     useEffect(() => {
         if (loginForm || signupForm) {
@@ -97,7 +93,7 @@ export default function Header() {
                         <p className='header-tag header-elem-position'>Procrastination Station</p>
                         <p className='header-donate header-elem-position'>Donate</p>
                         {isLoggedIn ? ( 
-                        <p className='header-login header-elem-position' onClick={toggleLogout}>Logout</p>
+                        <p className='header-login header-elem-position' onClick={Auth.logout}>Logout</p>
                     ) : ( 
                         <p className='header-login header-elem-position' onClick={toggleLogin}>Login</p>
                     )}

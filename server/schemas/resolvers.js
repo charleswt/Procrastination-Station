@@ -32,23 +32,22 @@ const resolvers = {
             const snake = '0';
             const pong = '0';
             const dino = '0';
-
-            console.log(username, password)
-            
             try{
                 const user = User.create({ username, password, ttt, snake, pong, dino })
                 const token = packToken(user)
+                console.log(token, 'Token')
+                console.log(username, password, 'User Pass')
                 return { token, user }
             } catch (err){
-                console.log(username, password)
+                console.log(username, password, 'error')
                 console.log(err,'Error creating user');
             }
         },
-        login: async ( parent, { username, password })=> {
-            const user = await user.findOne({username})
+        login: async ( parent, { username, password } )=> {
+            const user = await User.findOne({username})
             if (!user) return console.log('Incorrect username')
 
-            const passAuth = await user.isCorrectPassword(password);
+            const passAuth = await user.comparePassword(password);
 
             if(!passAuth) return console.log('Incorrect password')
 
