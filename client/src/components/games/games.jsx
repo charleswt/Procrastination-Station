@@ -12,20 +12,18 @@ export default function GameDisplayCards(){
                 <img className='game-img' src="./public/images/ttt.webp"/>
                 <div className='game-tag'>
                     <p className='game-name-tag'>TIC-TAC-TOE</p>
-                    <Link href="/snake" ><button className="main-play-btn">PLAY</button></Link>
+                    <Link href="/ttt" ><button className="main-play-btn">PLAY</button></Link>
                 </div>  
             </div>
         </div>
-            
-    
-            
+             
         <div className="singleGame">
             
             <div className='games-flex-direction'>
                 <img className='game-img' src="./public/images/dino.webp"/>
                 <div className='game-tag'>
                     <p className='game-name-tag'>DINO</p>
-                    <Link href="/snake" ><button className="main-play-btn">PLAY</button></Link>
+                    <Link href="/dino" ><button className="main-play-btn">PLAY</button></Link>
                 </div>  
             </div>
         </div>
@@ -40,7 +38,6 @@ export default function GameDisplayCards(){
                 </div>  
             </div>
         </div>
-
         </div>
         </>
     )
