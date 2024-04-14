@@ -93,9 +93,9 @@ export default function DinoGame(){
             <div id="world" data-world>
                 <div id="score" data-score> 0 </div>
             <div id="start-screen" data-start-screen> Press Any Key To Start </div>
-            <img src="./imgs/ground.png" class="ground" alt="pixelated image of road" data-ground/>
-            <img src="./imgs/ground.png" class="ground" alt="pixelated image of road" data-ground/>
-            <img src="./imgs/dino-stationary.png" data-dino class="dino" alt="pixelated dinosaur"/>
+            <img src="client\public\images\dinoGame\ground.png" className="ground" alt="pixelated image of road" data-ground/>
+            <img src="client\public\images\dinoGame\ground.png" className="ground" alt="pixelated image of road" data-ground/>
+            <img src="client\public\images\dinoGame\dino-stationary.png" data-dino className="dino" alt="pixelated dinosaur"/>
             <div id="character"></div>
             <div id="block"></div>
             </div>

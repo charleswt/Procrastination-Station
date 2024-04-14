@@ -4,7 +4,7 @@ export default function GameDisplayCards(){
     return (
         <div className="gamesContainer">
         <div className="singleGame">
-            <img src="./public/images/ttt.webp"/> 
+            <img className= "gameImage" src="./public/images/ttt.webp"/> 
             <Link underline="hover" color="inherit" href="/ttt">
                 <button className="playButton"> Click Me to Play </button>
                 </Link>
@@ -13,7 +13,7 @@ export default function GameDisplayCards(){
     
             
         <div className="singleGame"> 
-            <img src="./public/images/dino.webp"/>
+            <img className= "gameImage" src="./public/images/dino.webp"/>
             <Link underline="hover" color="inherit" href="/dino">
                 <button className="playButton"> Click Me to Play </button>
                 </Link>
@@ -21,7 +21,7 @@ export default function GameDisplayCards(){
         </div> 
         
         <div className="singleGame">
-            <img src="./public/images/snake.webp"/>
+            <img className= "gameImage" src="./public/images/snake.webp"/>
             <Link underline="hover" color="inherit" href="/snake">
                 <button className="playButton"> Click Me to Play </button>
                 </Link>  
