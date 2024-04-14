@@ -1,4 +1,3 @@
-const { user } = require('./user')
+const { User } = require('./user')
 
-module.exports = { user };
-//removed post model for now since there is none
+module.exports =  User;

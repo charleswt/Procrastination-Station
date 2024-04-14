@@ -7,8 +7,8 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import Nav from './components/nav';
-import Footer from './components/footer'
+import Header from './components/header/header';
+import Footer from './components/footer/footer'
 import Banner from './components/banner'
 
 // setting up httpLink
