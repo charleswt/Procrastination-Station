@@ -9,7 +9,6 @@ import { setContext } from '@apollo/client/link/context';
 
 import Header from './components/header/header';
 import Footer from './components/footer/footer'
-import Banner from './components/banner'
 
 // setting up httpLink
 const link = createHttpLink({
@@ -37,8 +36,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-        <Banner />
-        <Nav />
+        <Header />
         <Outlet />
         <Footer />
     </ApolloProvider>

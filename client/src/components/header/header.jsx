@@ -87,11 +87,49 @@ export default function Header() {
         document.body.style.overflowY = 'auto';
     };
 
+    {/**Animated text */}
+
+    const [indexNum, setIndexNum] = useState(0);
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [text, setText] = useState('');
+    const time = 2000; // amount of time between words
+    const brand = ["Procrastination Station"]
+    const [delta, setDelta] = useState(300 -Math.random() * 100) // how fast each letter is typed
+
+    useEffect(()=> {
+        let ticker= setInterval(()=>{
+            tick();
+        }, delta)
+
+        return ()=>{ clearInterval(ticker)}
+    }, [text])
+
+    const tick = () => {
+        let i = indexNum % brand.length;
+        let fullText = brand[i];
+        let updatedText = isDeleting ? fullText.substring(0, text.length-1) : fullText.substring(0, text.length + 1)
+
+        setText(updatedText);
+
+        if (isDeleting){
+            setDelta(prevDelta => prevDelta /2)
+        }
+
+        if (!isDeleting && updatedText === fullText){
+            setIsDeleting(true);
+            setDelta(time);
+        } else if (isDeleting && updatedText === ''){
+            setIsDeleting(false);
+            setIndexNum(indexNum +1 );
+            setDelta(500);
+        }
+    }
+
     return (
         <>
             <header>
                 <img src="./public/images/logo.webp" alt="logo" className="header-logo" />
-                        <p className='header-tag'>Procrastination Station</p>
+                        <p className='header-tag'>{text}</p>
                         <p className='header-donate header-elem-position'>Donate</p>
                         {isLoggedIn ? ( 
                         <p className='header-login header-elem-position' onClick={Auth.logout}>Logout</p>
