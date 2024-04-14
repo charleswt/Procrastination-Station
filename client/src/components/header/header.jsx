@@ -41,6 +41,7 @@ export default function Header() {
     };
 
     const toggleLogin = () => {
+        document.body.style.overflowY = 'hidden';
         setLogin(!loginForm);
     };
 
@@ -83,21 +84,20 @@ export default function Header() {
     const closeLogin = () => {
         setLogin(false);
         setSignup(false);
+        document.body.style.overflowY = 'auto';
     };
 
     return (
         <>
             <header>
                 <img src="./public/images/logo.webp" alt="logo" className="header-logo" />
-                <div className='header-flex-direction'>
-                        <p className='header-tag header-elem-position'>Procrastination Station</p>
+                        <p className='header-tag'>Procrastination Station</p>
                         <p className='header-donate header-elem-position'>Donate</p>
                         {isLoggedIn ? ( 
                         <p className='header-login header-elem-position' onClick={Auth.logout}>Logout</p>
                     ) : ( 
                         <p className='header-login header-elem-position' onClick={toggleLogin}>Login</p>
                     )}
-                </div>
             </header>
 
             {loginForm &&
