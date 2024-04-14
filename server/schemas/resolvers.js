@@ -44,12 +44,14 @@ const resolvers = {
             }
         },
         login: async ( parent, { username, password } )=> {
+
             const user = await User.findOne({username})
+
             if (!user) return console.log('Incorrect username')
 
-            const passAuth = await user.comparePassword(password);
+            const passAuth = await user.isCorrectPassword(password);
 
-            if(!passAuth) return console.log('Incorrect password')
+            if(!passAuth) return console.log(passAuth, 'Incorrect password')
 
             const token = packToken(user);
 

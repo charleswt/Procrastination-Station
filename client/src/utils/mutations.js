@@ -7,6 +7,10 @@ export const LOGIN_USER = gql`
       user {
         _id
         username
+        ttt
+        snake
+        pong
+        dino
       }
     }
   }
