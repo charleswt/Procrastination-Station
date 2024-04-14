@@ -52,17 +52,25 @@ ul {
 /* games.jsx */
 /* ///////// */
 
-.gameContainer {
+.game-card-center {
+  display: flex;
   margin: 0 auto;
-  width: 100%;
-  max-width: 2000px;
+  width: 90%;
+  max-width: 1550px;
 }
 
-.singleGame {
+@media screen and (width <= 900px) {
+  .game-card-center {
+    width: 100%;
+  }
+}
+
+.single-game {
   text-align: center;
   background: rgb(241, 241, 241);
   max-height: 300px;
   width: 100%;
+  max-width: 1600px;
   margin: 4rem 0;
   box-shadow: 0px 0px 10px 2px rgb(46, 46, 46);
 }
@@ -70,6 +78,13 @@ ul {
 .hero{
   width: 100%;
   max-width: 1600px;
+}
+
+@media screen and (width >= 1600px) {
+  .hero {
+    display: flex;
+    margin: 0 auto;
+  }
 }
 
 footer {
@@ -85,7 +100,6 @@ footer {
 }
 
 .games-flex-direction {
-  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -105,12 +119,32 @@ footer {
 
 .game-img {
   background-color: rgb(241, 241, 241);
-  mask-image: linear-gradient(to right,
-   rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,.8), rgba(0,0,0,.6), rgba(0,0,0,.4), rgba(0,0,0,0) );
   display: flex;
   align-items: start;
   height: 300px;
 }
+
+@media screen and (width >= 801px) {
+  .game-img {
+  mask-image: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,.8), rgba(0,0,0,.6), rgba(0,0,0,.4), rgba(0,0,0,0) );
+  }
+}
+
+@media screen and (width <= 800px) {
+  .single-game {
+    margin: 12rem 0;
+  }
+  .games-flex-direction {
+    flex-direction: column
+  }
+}
+
+@media screen and (width <= 400px) {
+  .game-name-tag {
+    font-size: 3rem;
+  }
+}
+
 
 /* ////////// */
 /* header.jsx */
@@ -126,11 +160,6 @@ footer {
   left: 0;
 }
 
-.header-flex-direction {
-  display: flex;
-  justify-content: end;
-}
-
 .header-tag {
   top: 0;
   width: 100%;
@@ -138,8 +167,26 @@ footer {
   position: fixed;
   display: flex;
   justify-content: center;
-  font-size: 4rem;
+  font-size: 2rem;
   border-bottom:2px solid red;
+}
+
+@media screen and (width <= 605px) {
+  .header-tag {
+    justify-content: end;
+  }
+}
+
+@media screen and (width <= 495px) {
+  .header-tag {
+    font-size: 1.7rem;
+  }
+}
+
+@media screen and (width <= 440px) {
+  .header-tag {
+    font-size: 1.35rem;
+  }
 }
 
 .header-elem-position {
@@ -152,7 +199,7 @@ footer {
   right: 3%;
   margin: 1rem;
   border-radius: .2rem;
-  margin-top: 5%;
+  margin-top: 5vh;
   padding: .5rem;
 }
 
@@ -162,8 +209,42 @@ footer {
   right: 15%;
   margin: 1rem;
   border-radius: .2rem;
-  margin-top: 5%;
+  margin-top: 5vh;
   padding: .5rem;
+}
+
+@media screen and (width <= 1100px) {
+  .header-donate {
+    right: 25%;
+  }
+  .header-login {
+    
+  }
+}
+
+@media screen and (width <= 750px) {
+  .header-donate {
+    right: 30%;
+  }
+}
+
+@media screen and (width <= 750px) {
+  .header-donate {
+    right: 30%;
+  }
+}
+
+@media screen and (width <= 550px) {
+  .header-donate {
+    right: 35%;
+  }
+}
+
+@media screen and (width <= 450px) {
+  
+  .header-login {
+    right: 0;
+  }
 }
 
 .header-donate::after, .header-login::after {
@@ -184,12 +265,12 @@ footer {
 }
 
 header {
-  max-height: 10vh;
+  height: 10vh;
+  min-height: 80px;
   position: absolute;
   width: 100%;
   backdrop-filter: blur(10px);
   background-color: rgba(51, 51, 51, .4);
-  height: 10vh;
   border-bottom-width: 3px;
   border-bottom-style: solid;
   border-image: linear-gradient(to top, red, rgba(255,0,0,0))1 100%;
