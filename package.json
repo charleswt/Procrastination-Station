@@ -10,7 +10,7 @@
         "build": "cd client && npm run build",
         "install": "cd server && npm i && cd ../client && npm i",
         "client": "cd client && npm start",
-        "seed": "node server/seeds/seed.js"
+        "seed": "cd server && npm run seed"
     },
     "keywords": [],
     "author": "",
@@ -20,5 +20,6 @@
     },
     "dependencies": {
         "dotenv": "^16.4.5"
+        
     }
 }
