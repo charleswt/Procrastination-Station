@@ -52,17 +52,25 @@ ul {
 /* games.jsx */
 /* ///////// */
 
-.gameContainer {
+.game-card-center {
+  display: flex;
   margin: 0 auto;
-  width: 100%;
-  max-width: 2000px;
+  width: 90%;
+  max-width: 1550px;
 }
 
-.singleGame {
+@media screen and (width <= 900px) {
+  .game-card-center {
+    width: 100%;
+  }
+}
+
+.single-game {
   text-align: center;
   background: rgb(241, 241, 241);
   max-height: 300px;
   width: 100%;
+  max-width: 1600px;
   margin: 4rem 0;
   box-shadow: 0px 0px 10px 2px rgb(46, 46, 46);
 }
@@ -92,7 +100,6 @@ footer {
 }
 
 .games-flex-direction {
-  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -124,7 +131,7 @@ footer {
 }
 
 @media screen and (width <= 800px) {
-  .singleGame {
+  .single-game {
     margin: 12rem 0;
   }
   .games-flex-direction {

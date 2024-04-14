@@ -2,12 +2,11 @@ import Link from '@mui/material/Link';
 
 export default function GameDisplayCards(){
     return (
-        <>
+        <div className='games-container'>
         <img className="hero" src="./public/images/hero.webp"/>
         
-        <div className="gamesContainer">
-        <div className="singleGame">
-            
+        <div className="game-card-center">
+        <div className="single-game">
             <div className='games-flex-direction'>
                 <img className='game-img' src="./public/images/ttt.webp"/>
                 <div className='game-tag'>
@@ -16,9 +15,10 @@ export default function GameDisplayCards(){
                 </div>  
             </div>
         </div>
+        </div>
              
-        <div className="singleGame">
-            
+        <div className="game-card-center">
+        <div className="single-game">
             <div className='games-flex-direction'>
                 <img className='game-img' src="./public/images/dino.webp"/>
                 <div className='game-tag'>
@@ -27,9 +27,10 @@ export default function GameDisplayCards(){
                 </div>  
             </div>
         </div>
+        </div>
         
-        <div className="singleGame">
-            
+        <div className="game-card-center">
+        <div className="single-game">
             <div className='games-flex-direction'>
                 <img className='game-img' src="./public/images/snake.webp"/>
                 <div className='game-tag'>
@@ -39,6 +40,6 @@ export default function GameDisplayCards(){
             </div>
         </div>
         </div>
-        </>
+        </div>
     )
 };
