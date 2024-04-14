@@ -41,6 +41,7 @@ export default function Header() {
     };
 
     const toggleLogin = () => {
+        document.body.style.overflowY = 'hidden';
         setLogin(!loginForm);
     };
 
@@ -83,6 +84,7 @@ export default function Header() {
     const closeLogin = () => {
         setLogin(false);
         setSignup(false);
+        document.body.style.overflowY = 'auto';
     };
 
     return (
