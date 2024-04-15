@@ -186,14 +186,14 @@ footer {
 @media screen and (width <= 495px) {
   .header-tag {
     font-size: 1.7rem;
-    min-height: 26px;
+    min-height: 29px;
   }
 }
 
 @media screen and (width <= 440px) {
   .header-tag {
     font-size: 1.35rem;
-    min-height: 21px;
+    min-height: 23px;
   }
 }
 
