@@ -160,6 +160,10 @@ footer {
   left: 0;
 }
 
+.header-logo:hover {
+  cursor: pointer;
+}
+
 .header-tag {
   top: 0;
   width: 100%;
@@ -377,5 +381,66 @@ header {
   text-decoration: underline;
 }
 
-/* header */
+/* /////// */
+/* ttt.jsx */
+/* /////// */
+
+.grid-item {
+  display: block;
+  padding: 1rem;
+  border: 2px solid #ff0000;
+  box-shadow: 0 0 15px 2px rgb(255, 84, 84);
+  text-shadow: 0 0 10px 2px #ffc0cb;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.grid {
+  height: 300px;
+  width: 300px;
+  display: grid;
+  grid-template-columns: repeat(3,auto);
+  margin: auto;
+}
+
+.container {
+  margin: 0 auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  text-align: center;
+}
+
+
+.absolute-ttt {
+  position: absolute;
+  width: 100%;
+  top: 25%;
+}
+
+.height-ttt {
+  height: 90vh;
+  background: blueviolet;
+}
+
+#restart {
+  margin-top: 1rem;
+  box-shadow: 0 0 15px rgb(255, 84, 84);
+  border-radius: .3rem;
+  padding: .6rem;
+  color: white;
+  background-color: red;
+  transition: .2s;
+}
+
+#restart:hover:active {
+  padding: .4rem;
+}
+
+#playerTurn, .ttt-tag {
+  font-size: 2rem;
+  margin: 1rem;
+  color: #ff0000;
+  text-shadow: 0 0 10px #ffc0cb;
+}
 

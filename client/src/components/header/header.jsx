@@ -125,10 +125,18 @@ export default function Header() {
         }
     }
 
+    const logoHome = () => {
+        if (window.location.pathname === '/') {
+            window.scrollTo(0, 0);
+        } else {
+            window.location.href = '/';
+        }
+    };
+
     return (
         <>
             <header>
-                <img src="./public/images/logo.webp" alt="logo" className="header-logo" />
+                <img onClick={logoHome} src="./public/images/logo.webp" alt="logo" className="header-logo"/>
                         <p className='header-tag'>{text}</p>
                         <p className='header-donate header-elem-position'>Donate</p>
                         {isLoggedIn ? ( 
