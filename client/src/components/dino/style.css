@@ -1,59 +1,67 @@
-*, *::before, *::after {
-    box-sizing: border-box;
-    user-select: none;
+.game {
+    width: 600px;
+    height: 200px;
+    border: 1px solid black;
+    margin:auto;
 }
 
-body{
-    margin:0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+#score{
+    text-align: center;
 }
 
-.world {
-    overflow: hidden;
+#dino {
+    width: 50px;
+    height: 50px;
+    background-image: url(./dino-stationary.png); 
+    background-size: 50px 50px; 
     position: relative;
+    top: 150px;
 }
 
-.score {
-    position: absolute;
-    font-size: 3vmin;
-    right: 1vmin;
-    top: 1vmin;
+#cactus {
+    width: 20px;
+    height: 40px;
+    position: relative;
+    top: 110px;
+    left: 580px;
+
+    background-image: url(./cactus.png);
+    background-size: 20px 40px;
+
+    animation: attack 1s infinite linear;
 }
 
-.start-screen {
-    position: absolute;
-    font-size: 5vmin;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.jump {
+    animation: jump 0.3s linear;
 }
 
-.hide {
-    display:none;
+@keyframes attack {
+    0%{
+        left: 580px;
+    }
+
+    100%{
+        left: -20px;
+    }
 }
 
-.ground {
-    --left: 0;
-    position: absolute;
-    width: 300%;
-    bottom: 0;
-    left: calc(var(--left) * 1%);
-}
+@keyframes jump {
+    0% {
+        top:150px;
+    }
+    30% {
+        top: 130px;
+    }
+    50% {
+        top: 80px;
+    }
 
-.dino{
-    --bottom: 0;
-    position: absolute;
-    left: 1%;
-    height: 30%;
-    bottom: calc(var(--bottom) * 1%);
-}
+    80% {
+        top: 130px;
+    }
 
-.cactus {
-    position: absolute;
-    left: calc(var(--left) * 1%);
-    height: 30%;
-    bottom: 0;
+    100%{
+        top: 150px;
+    }
+    
 }
