@@ -429,7 +429,7 @@ header {
 }
 
 #restart {
-  margin-top: 1rem;
+  margin: 1rem;
   box-shadow: 0 0 15px rgb(255, 84, 84);
   border-radius: .3rem;
   padding: .6rem;
@@ -449,4 +449,12 @@ header {
   text-shadow: 0 0 10px #ffc0cb;
 }
 
-
+#ttt-score {
+  border: 3px solid white;
+  background-color: #333;
+  padding: .5rem;
+  color: white;
+  box-shadow: 1px 1px 5px 5px black;
+  max-width: fit-content;
+  margin: 0 auto;
+}

@@ -8,13 +8,13 @@ export default function TTT() {
   const [updateTtt] = useMutation(UPDATE_TTT);
   const { loading, data } = useQuery(GET_TTT);
   useEffect(() => {
-    // console.log(data)
-    
-    if(data){
-      console.log(data.getTtt)
+    if(!loading){
       document.querySelector('#ttt-score').innerHTML = data.getTtt
-    }
-    
+    } else {
+      document.querySelector('#ttt-score').innerHTML = "Loading..."
+    }}, [data])
+
+  useEffect(() => {    
     const items = document.querySelectorAll(".grid-item");
     const textStatus = document.querySelector("#playerTurn");
     const restartBtn = document.querySelector("#restart");
@@ -55,6 +55,7 @@ export default function TTT() {
     let running = true;
 
     intGame();
+
 
     function intGame() {
       items.forEach((item) => item.addEventListener("click", itemClicked));
@@ -134,7 +135,7 @@ export default function TTT() {
       checkWinner();
 
       if (running) {
-          setTimeout(simulateBotMove, 500);
+        simulateBotMove()
       }
   }
 
