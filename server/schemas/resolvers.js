@@ -7,27 +7,10 @@ const resolvers = {
         getUsers: async () => {
             return await User.find();
         },
-        getMe: async (context) => {
-            return await User.findOne({ username: context.user.username });
-        },
-        getTtt: async (parent, args, context) => {
-            console.log(context)
+        getMe: async (parent, args, context) => {
             const user = await User.findOne({ username: context.user.username });
-            
-            return user.ttt
+            return user
         },
-        getSnake: async (parent, args, context) => {
-            const user = await User.findOne({ username: context.user.username });
-            return user.snake
-        },
-        getPong: async (parent, args, context) => {
-            const user = await User.findOne({ username: context.user.username });
-            return user.pong
-        },
-        getDino: async (parent, args, context) => {
-            const user = await User.findOne({ username: context.user.username });
-            return user.dino
-        }
     },
     Mutation: {
         addUser: async (parent, { username, password })=>{

@@ -2,9 +2,13 @@ import { gql } from '@apollo/client';
 
 export const GET_ME = gql`
   query getMe {
-    getMe {
-       username
-    }
+    getMe{
+    username
+    ttt
+    snake
+    pong
+    dino
+  }
   }
 `;
 
