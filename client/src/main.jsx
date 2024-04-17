@@ -10,6 +10,8 @@ import Snake from './pages/snake.jsx'
 import TTT from './pages/ttt.jsx'
 import Pong from './pages/pong.jsx'
 import Dino from './pages/dino.jsx'
+import Terms from './pages/terms.jsx'
+import Contact from './pages/contact.jsx'
 
 // router set up
 const router = createBrowserRouter([
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
           {
             path: '/pong',
             element: <Pong />
+          },
+          {
+            path: '/terms',
+            element: <Terms />
+          },
+          {
+            path: '/contact',
+            element: <Contact />
           }
       ]
     }
