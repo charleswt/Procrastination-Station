@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { UPDATE_TTT }  from '../utils/mutations';
 import { GET_TTT }  from '../utils/queries';
@@ -7,12 +7,42 @@ import '../../public/css/style.css';
 export default function TTT() {
   const [updateTtt] = useMutation(UPDATE_TTT);
   const { loading, data } = useQuery(GET_TTT);
-  useEffect(() => {
-    if(!loading){
-      document.querySelector('#ttt-score').innerHTML = data.getTtt
-    } else {
-      document.querySelector('#ttt-score').innerHTML = "Loading..."
-    }}, [data])
+  const [loadingText, setLoadingText] = useState('Loading');
+  const [loadCount, setLoadCount] = useState(0);
+
+    useEffect(() => {
+      let interval;
+      if (loading) {
+        interval = setInterval(() => {
+          setLoadCount(prevCount => prevCount + 1);
+        }, 400)
+      }
+    }, [loading]);
+  
+    useEffect(() => {
+      if (!loading && data) {
+        document.querySelector('#ttt-score').innerHTML = data.getTtt;
+      } else if (loadCount === 5) {
+        document.querySelector('#ttt-score').innerHTML = "Please Login/Signup to keep track of scores.";
+      } else {
+        switch (loadCount) {
+          case 0:
+            setLoadingText('Loading');
+            break;
+          case 1:
+            setLoadingText('Loading.');
+            break;
+          case 2:
+            setLoadingText('Loading..');
+            break;
+          case 3:
+            setLoadingText('Loading...');
+            break;
+          default:
+            setLoadingText('Loading');
+        }
+      }
+    }, [loading, loadCount, data]);
 
   useEffect(() => {    
     const items = document.querySelectorAll(".grid-item");
@@ -201,7 +231,7 @@ export default function TTT() {
           </div>
           <h2 id="playerTurn"></h2>
           <button id="restart">Restart</button>
-          <h3 id='ttt-score'></h3>
+          <h3 id='ttt-score'>{loadingText}</h3>
         </div>
       </div>
     </div>
