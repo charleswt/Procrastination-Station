@@ -21,7 +21,6 @@ export default function TTT() {
   
     useEffect(() => {
       if (!loading && data) {
-        console.log(data.getMe)
         document.querySelector('#ttt-score').innerHTML = data.getMe.ttt;
       } else if (loadCount === 5) {
         document.querySelector('#ttt-score').innerHTML = "Please Login/Signup to keep track of scores.";

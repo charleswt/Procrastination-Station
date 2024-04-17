@@ -423,6 +423,18 @@ header {
   top: 25%;
 }
 
+@media screen and (height <= 865px) {
+  .absolute-ttt {
+    top: 15%;
+  }
+}
+
+@media screen and (height <= 765px) {
+  .absolute-ttt {
+    top: 10%;
+  }
+}
+
 .height-ttt {
   height: 90vh;
   background: blueviolet;
@@ -440,6 +452,12 @@ header {
 
 #restart:hover:active {
   padding: .4rem;
+}
+
+@media screen and (height <= 686px) {
+  #restart {
+    margin-top: 0;
+  }
 }
 
 #playerTurn, .ttt-tag {
