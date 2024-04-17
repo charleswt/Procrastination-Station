@@ -31,3 +31,11 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const UPDATE_TTT = gql`
+  mutation updateTtt($outcome: String!) {
+    updateTtt(outcome: $outcome) {
+       ttt
+    }
+  }
+`;

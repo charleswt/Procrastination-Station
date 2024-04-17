@@ -1,45 +1,45 @@
 const User = require('../models/user');
 const { packToken, AuthenticationError } = require('../utils/auth');
+// Global Token
 
 const resolvers = {
     Query: {
         getUsers: async () => {
             return await User.find();
         },
-        getUser: async (_, { username }) => {
-            return await User.findOne({ username });
+        getMe: async (context) => {
+            return await User.findOne({ username: context.user.username });
         },
-        getTtt: async (_, { username }) => {
-            const user = await User.findOne({ username });
-            return user ? user.ttt : null;
+        getTtt: async (parent, args, context) => {
+            console.log(context)
+            const user = await User.findOne({ username: context.user.username });
+            
+            return user.ttt
         },
-        getSnake: async (_, { username }) => {
-            const user = await User.findOne({ username });
-            return user ? user.snake : null;
+        getSnake: async (parent, args, context) => {
+            const user = await User.findOne({ username: context.user.username });
+            return user.snake
         },
-        getPong: async (_, { username }) => {
-            const user = await User.findOne({ username });
-            return user ? user.pong : null;
+        getPong: async (parent, args, context) => {
+            const user = await User.findOne({ username: context.user.username });
+            return user.pong
         },
-        getDino: async (_, { username }) => {
-            const user = await User.findOne({ username });
-            return user ? user.dino : null;
+        getDino: async (parent, args, context) => {
+            const user = await User.findOne({ username: context.user.username });
+            return user.dino
         }
     },
     Mutation: {
         addUser: async (parent, { username, password })=>{
-            const ttt = '0';
+            const ttt = 'Wins: 0 Draws: 0 Losses: 0';
             const snake = '0';
             const pong = '0';
             const dino = '0';
             try{
                 const user = User.create({ username, password, ttt, snake, pong, dino })
                 const token = packToken(user)
-                console.log(token, 'Token')
-                console.log(username, password, 'User Pass')
                 return { token, user }
             } catch (err){
-                console.log(username, password, 'error')
                 console.log(err,'Error creating user');
             }
         },
@@ -57,8 +57,32 @@ const resolvers = {
 
             return { token, user }
         },
-        updateTtt: async (_, { username, ttt }) => {
-            
+        updateTtt: async (parent, { outcome }, context) => {
+            const user = await User.findOne({username: context.user.username })
+             try {
+
+                let wins = user.ttt.split(" ")[1]
+                let draws = user.ttt.split(" ")[3]
+                let losses = user.ttt.split(" ")[5]
+                
+                if(outcome === "2"){
+                    wins++
+                    console.log(wins, "wins")
+                } else if (outcome === "0"){
+                    draws++
+                    console.log(draws, "draws")
+                } else {
+                    losses++
+                    console.log(losses, "losses")
+                }
+                user.ttt = `Wins: ${wins} Draws: ${draws} Losses: ${losses}`
+
+                user.save()
+
+                return user
+            } catch(err) {
+                throw new Error('Failed to update Tic-Tac-Toe score');
+            }
         },
         updateSnake: async (_, { username, snake }) => {
             
