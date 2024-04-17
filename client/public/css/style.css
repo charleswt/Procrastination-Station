@@ -87,10 +87,11 @@ ul {
   }
 }
 
-footer {
+.footer {
   text-align: center;
   position: relative;
   bottom: 0;
+  margin: auto;
 }
 
 .main-play-btn {
