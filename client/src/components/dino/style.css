@@ -3,6 +3,8 @@
     height: 200px;
     border: 1px solid black;
     margin:auto;
+    position: relative;
+    top: 25vh;
 }
 
 #score{
