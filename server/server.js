@@ -1,6 +1,8 @@
 const express = require('express');
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
+const {authMiddleware} = require('./utils/auth')
+const cookiesMiddleware = require('universal-cookie-express');
 const path = require('path');
 
 const { typeDefs, resolvers } = require('./schemas');
@@ -19,7 +21,12 @@ const startApolloServer = async () => {
 
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
-  
+  app.use(cookiesMiddleware()).use(function (req, res, next) {
+
+    req.token = req.universalCookies.get('token_auth')
+    next()
+  });
+
   // if (process.env.NODE_ENV === 'production' || !process.env.NODE_ENV) {
   //   app.use(express.static(path.join(__dirname, '../client/dist')));
     
@@ -27,9 +34,9 @@ const startApolloServer = async () => {
   //     res.sendFile(path.join(__dirname, '../client/index.html'));
   //   });
   // }
-  
-  app.use('/graphql', expressMiddleware(server));
 
+  app.use('/graphql', expressMiddleware(server, {context:authMiddleware}));
+  
   db.once('open', () => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);

@@ -16,20 +16,20 @@ type Auth {
 
 type Query {
   getUsers: [User]
-  getUser(username: String!): User
-  getTtt(username: String!): User
-  getSnake(username: String!): User
-  getPong(username: String!): User
-  getDino(username: String!): User
+  getMe: User
+  getTtt: String
+  getSnake: User
+  getPong: User
+  getDino: User
 }
 
 type Mutation {
   addUser(username: String!, password: String!): Auth
   login(username: String!, password: String!): Auth
-  updateTtt(username: String!): User
-  updateSnake(username: String!): User
-  updatePong(username: String!): User
-  updateDino(username: String!): User
+  updateTtt(outcome: String!): User
+  updateSnake(snake: String!): User
+  updatePong(pong: String!): User
+  updateDino(dino: String!): User
 }
 `
 // Dino we can just save the time played and update it every time the time played is higher than the one in currently saved in the DB

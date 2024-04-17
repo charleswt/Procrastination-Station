@@ -1,9 +1,20 @@
 import React, { useEffect } from 'react';
+import { useQuery, useMutation } from '@apollo/client';
+import { UPDATE_TTT }  from '../utils/mutations';
+import { GET_TTT }  from '../utils/queries';
 import '../../public/css/style.css';
 
 export default function TTT() {
-
+  const [updateTtt] = useMutation(UPDATE_TTT);
+  const { loading, data } = useQuery(GET_TTT);
   useEffect(() => {
+    // console.log(data)
+    
+    if(data){
+      console.log(data.getTtt)
+      document.querySelector('#ttt-score').innerHTML = data.getTtt
+    }
+    
     const items = document.querySelectorAll(".grid-item");
     const textStatus = document.querySelector("#playerTurn");
     const restartBtn = document.querySelector("#restart");
@@ -92,9 +103,15 @@ export default function TTT() {
 
       if (roundWon) {
         textStatus.textContent = `${currentPlayer} wins!`;
+        if(currentPlayer === `X`){
+          updateTtt({ variables: { outcome: '2' } })
+        } else {
+          updateTtt({ variables: { outcome: '1' } })
+        }
         running = false;
       } else if (!options.includes("")) {
         textStatus.textContent = `Draw!`;
+        updateTtt({ variables: { outcome: '0' } })
         running = false;
       } else {
         changePlayer();
@@ -106,7 +123,7 @@ export default function TTT() {
     }
 
     function itemClicked() {
-      const itemIndex = this.getAttribute("itemIndex");
+      const itemIndex = this.getAttribute("itemindex");
 
       if (options[itemIndex] !== "" || !running) {
           return;
@@ -141,13 +158,11 @@ export default function TTT() {
                   updateItem(items[condition[2]], condition[2]);
                   return checkWinner();
               }
-              break;
           case "X,,X":
               if (itemB === "") {
                   updateItem(items[condition[1]], condition[1]);
                   return checkWinner();
               }
-              break;
           case ",X,X":
               if (itemA === "") {
                   updateItem(items[condition[0]], condition[0]);
@@ -163,7 +178,6 @@ export default function TTT() {
       updateItem(items[chosenIndex], chosenIndex);
 
       checkWinner();
-  
 }
 
 }, []);
@@ -174,18 +188,19 @@ export default function TTT() {
         <div className="container">
           <h1 className='ttt-tag'>Tic-Tac-Toe</h1>
           <div className="grid">
-            <div itemIndex="0" className="grid-item grid-1"></div>
-            <div itemIndex="1" className="grid-item grid-2"></div>
-            <div itemIndex="2" className="grid-item grid-3"></div>
-            <div itemIndex="3" className="grid-item grid-4"></div>
-            <div itemIndex="4" className="grid-item grid-5"></div>
-            <div itemIndex="5" className="grid-item grid-6"></div>
-            <div itemIndex="6" className="grid-item grid-7"></div>
-            <div itemIndex="7" className="grid-item grid-8"></div>
-            <div itemIndex="8" className="grid-item grid-9"></div>
+            <div itemindex="0" className="grid-item grid-1"></div>
+            <div itemindex="1" className="grid-item grid-2"></div>
+            <div itemindex="2" className="grid-item grid-3"></div>
+            <div itemindex="3" className="grid-item grid-4"></div>
+            <div itemindex="4" className="grid-item grid-5"></div>
+            <div itemindex="5" className="grid-item grid-6"></div>
+            <div itemindex="6" className="grid-item grid-7"></div>
+            <div itemindex="7" className="grid-item grid-8"></div>
+            <div itemindex="8" className="grid-item grid-9"></div>
           </div>
           <h2 id="playerTurn"></h2>
           <button id="restart">Restart</button>
+          <h3 id='ttt-score'></h3>
         </div>
       </div>
     </div>
