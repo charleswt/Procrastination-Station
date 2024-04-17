@@ -27,14 +27,6 @@ const startApolloServer = async () => {
     next()
   });
 
-  // if (process.env.NODE_ENV === 'production' || !process.env.NODE_ENV) {
-  //   app.use(express.static(path.join(__dirname, '../client/dist')));
-    
-  //   app.get('*', (req, res) => {
-  //     res.sendFile(path.join(__dirname, '../client/index.html'));
-  //   });
-  // }
-
   app.use('/graphql', expressMiddleware(server, {context:authMiddleware}));
   
   db.once('open', () => {
