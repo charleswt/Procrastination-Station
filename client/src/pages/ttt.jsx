@@ -90,7 +90,7 @@ export default function TTT() {
     function intGame() {
       items.forEach((item) => item.addEventListener("click", itemClicked));
       restartBtn.addEventListener("click", restartGame);
-      textStatus.textContent = `${currentPlayer}'s turn`;
+      textStatus.textContent = "";//`${currentPlayer}'s turn`
     }
 
     function itemClicked() {
@@ -112,7 +112,7 @@ export default function TTT() {
 
     function changePlayer() {
       currentPlayer = currentPlayer === "X" ? "O" : "X";
-      textStatus.textContent = `${currentPlayer}'s turn`;
+      textStatus.textContent = "";//`${currentPlayer}'s turn`
     }
 
     function checkWinner() {
