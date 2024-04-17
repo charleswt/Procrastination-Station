@@ -27,7 +27,7 @@ type Mutation {
   addUser(username: String!, password: String!): Auth
   login(username: String!, password: String!): Auth
   updateTtt(outcome: String!): User
-  updateSnake(snake: String!): User
+  updateSnake(lastGamesScore: String!): User
   updatePong(pong: String!): User
   updateDino(dino: String!): User
 }
