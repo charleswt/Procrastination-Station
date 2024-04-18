@@ -12,6 +12,33 @@ export default function Header() {
     const [loginForm, setLogin] = useState(false);
     const [signupForm, setSignup] = useState(false);
 
+    // STRIPE FETCH //
+    useEffect(() => {
+        const donateStripeButton = document.querySelector('#donateStripe');
+        if (donateStripeButton) {
+            donateStripeButton.addEventListener('click', () => {
+                fetch("http://localhost:3001/create-checkout-session", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        items: [
+                            { id: 1, quantity: 1 },
+                        ]
+                    })
+                }).then(res => {
+                    if (res.ok) return res.json();
+                    return res.json().then(json => Promise.reject(json));
+                }).then(({ url }) => {
+                    window.location = url;
+                }).catch(e => {
+                    console.log(e.error);
+                });
+            });
+        }
+    }, []);
+
     const handleChange = event => {
         const { name, value } = event.target;
         setFormState({
@@ -138,7 +165,7 @@ export default function Header() {
             <header>
                 <img onClick={logoHome} src="./public/images/logo.webp" alt="logo" className="header-logo"/>
                         <p className='header-tag'>{text}</p>
-                        <p className='header-donate header-elem-position'>Donate</p>
+                        <p id='donateStripe' className='header-donate header-elem-position'>Donate</p>
                         {isLoggedIn ? ( 
                         <p className='header-login header-elem-position' onClick={Auth.logout}>Logout</p>
                     ) : ( 

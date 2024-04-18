@@ -4,7 +4,6 @@ const { expressMiddleware } = require('@apollo/server/express4');
 const {authMiddleware} = require('./utils/auth')
 const cookiesMiddleware = require('universal-cookie-express');
 const path = require('path');
-
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
@@ -26,6 +25,42 @@ const startApolloServer = async () => {
     req.token = req.universalCookies.get('token_auth')
     next()
   });
+
+  const stripe = require('stripe')(process.env.STRIPE_KEY)
+  const cors = require('cors')
+
+  app.use(cors({ origin: 'http://localhost:3000', }))
+  
+  const storeItems = new Map([
+    [ 1, { priceInCents: 100, name: "Donate" }]
+  ])
+
+  app.post("/create-checkout-session", async (req,res)=>{
+    try{
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        mode: "payment",
+        line_items: req.body.items.map(item => {
+          const storeItem = storeItems.get(item.id)
+          return{
+            price_data: {
+              currency: 'usd',
+              product_data: {
+                name: storeItem.name
+              },
+              unit_amount: storeItem.priceInCents
+            },
+            quantity: item.quantity
+          }
+        }),
+        success_url: `${process.env.CLIENT_URL}/success`,
+        cancel_url: `${process.env.CLIENT_URL}/cancel`,
+      })
+      res.json({ url: session.url})
+    }catch(err){
+      console.log(err)
+    }
+  })
 
   app.use('/graphql', expressMiddleware(server, {context:authMiddleware}));
   
