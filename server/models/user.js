@@ -15,9 +15,10 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    snake: { // example `Wins: ${win}  Loses: ${loss}`
-        type: String,
+    snake: {
+        type: Number,
         required: true,
+        default: 0,
     },
     pong: {
         type: String,

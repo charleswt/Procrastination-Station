@@ -69,20 +69,17 @@ const resolvers = {
             }
         },
         updateSnake: async (_, { lastGamesScore }, context) => {
-            const user = await User.findOne({username: context.user.username })
-            try{
-                let score = user.snake.split(" ")[2];
-                if(lastGamesScore > score){
-                    score+=1;
-                    user.snake = `High Score: ${score}`;
-
-                user.save()
-                }
-                return user
-            }catch(err){
-                console.log(err)
+            const user = await User.findOne({ username: context.user.username });
+            try {
+              if (lastGamesScore > user.snake) {
+                user.snake = lastGamesScore;
+                user.save();
+              }
+              return user;
+            } catch (err) {
+              console.log(err);
             }
-        },
+          },
         updatePong: async (_, { username, pong }) => {
             
         },
