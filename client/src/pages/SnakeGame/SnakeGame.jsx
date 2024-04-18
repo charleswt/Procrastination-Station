@@ -14,7 +14,7 @@ const SnakeGame = () => {
   const [gameStarted, setGameStarted] = useState(false);
 
   const [updateSnake] = useMutation(UPDATE_SNAKE);
-  const { loading, error, data } = useQuery(GET_ME);
+  const { loading, error, data, refetch } = useQuery(GET_ME);
 
   const BOARD_SIZE = 15;
   const SPEED = 100;
@@ -150,11 +150,15 @@ const SnakeGame = () => {
         variables: {
           lastGamesScore: score,
         },
+        refetchQueries: [{ query: GET_ME }],
       });
     } catch (error) {
       console.error('Failed to update Snake score:', error);
     }
   };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
