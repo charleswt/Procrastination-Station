@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useQuery, useMutation } from '@apollo/client';
 import GameBoard from './GameBoard';
+import { UPDATE_SNAKE } from '../../utils/mutations';
+import { GET_ME } from '../../utils/queries';
 
 const SnakeGame = () => {
   const [snake, setSnake] = useState([[0, 0]]);
@@ -9,6 +12,9 @@ const SnakeGame = () => {
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
+
+  const [updateSnake] = useMutation(UPDATE_SNAKE);
+  const { loading, error, data } = useQuery(GET_ME);
 
   const BOARD_SIZE = 15;
   const SPEED = 100;
@@ -40,6 +46,12 @@ const SnakeGame = () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [direction]);
+
+  useEffect(() => {
+    if (gameOver) {
+      updateSnakeScore();
+    }
+  }, [gameOver]);
 
   const generateFood = () => {
     const randomPosition = () => Math.floor(Math.random() * BOARD_SIZE);
@@ -132,6 +144,18 @@ const SnakeGame = () => {
     setFoodGenerated(false);
   };
 
+  const updateSnakeScore = async () => {
+    try {
+      await updateSnake({
+        variables: {
+          lastGamesScore: score,
+        },
+      });
+    } catch (error) {
+      console.error('Failed to update Snake score:', error);
+    }
+  };
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <div style={{ textAlign: 'center' }}>
@@ -142,6 +166,7 @@ const SnakeGame = () => {
           <>
             <GameBoard snake={snake} food={food} boardSize={BOARD_SIZE} />
             <div className="score">Score: {score}</div>
+            <div className="high-score">High Score: {data.getMe.snake}</div>
             {gameOver ? (
               <div>
                 <div className="game-over">Game Over!</div>
