@@ -19,18 +19,17 @@ module.exports = {
             { from: "robots.txt", to: "robots.txt" },
         ],
     }),
+    new InjectManifest({
+      swSrc: './src-sw.js',
+      swDest: 'service-worker.js',
+      maximumFileSizeToCacheInBytes: 10 * 1024 * 1024, // Example: Set maximum file size to 10 MB
+    }),
     new HtmlWebpackPlugin({
       title: 'homepage',
       template: 'index.html',
       filename: 'index.html',
       minify: true
     }),
-    new InjectManifest({
-      swSrc: './src-sw.js',
-      swDest: 'service-worker.js',
-      maximumFileSizeToCacheInBytes: 10 * 1024 * 1024, // Example: Set maximum file size to 10 MB
-    }),
-    
       // Creates a manifest.json file.
       new WebpackPwaManifest({
         fingerprints: false,

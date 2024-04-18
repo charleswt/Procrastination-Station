@@ -8,6 +8,7 @@
         "start": "npm run build && cd server && node server.js",
         "server": "cd server && nodemon server.js --ignore client",
         "build": "cd client && npm run build",
+        "build:seed": "cd server && npm run seed && cd ../client && npm run build",
         "install": "cd server && npm i && cd ../client && npm i",
         "client": "cd client && npm start",
         "seed": "cd server && npm run seed"
