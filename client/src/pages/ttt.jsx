@@ -18,7 +18,7 @@ export default function TTT() {
         }, 400)
       }
     }, [loading]);
-  
+    
     useEffect(() => {
       if (!loading && data) {
         document.querySelector('#ttt-score').innerHTML = data.getMe.ttt;
