@@ -9,6 +9,7 @@ const resolvers = {
         },
         getMe: async (parent, args, context) => {
             const user = await User.findOne({ username: context.user.username });
+
             return user;
         },
     },
