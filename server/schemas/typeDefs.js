@@ -4,7 +4,7 @@ const typeDefs =
   username: String
   password: String
   ttt: String
-  snake: String
+  snake: Int
   pong: String
   dino: String
 }
@@ -18,7 +18,7 @@ type Query {
   getUsers: [User]
   getMe: User
   getTtt: String
-  getSnake: User
+  getSnake: Int
   getPong: User
   getDino: User
 }
@@ -27,7 +27,7 @@ type Mutation {
   addUser(username: String!, password: String!): Auth
   login(username: String!, password: String!): Auth
   updateTtt(outcome: String!): User
-  updateSnake(lastGamesScore: String!): User
+  updateSnake(lastGamesScore: Int!): User
   updatePong(pong: String!): User
   updateDino(dino: String!): User
 }
