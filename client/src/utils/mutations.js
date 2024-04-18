@@ -39,3 +39,11 @@ export const UPDATE_TTT = gql`
     }
   }
 `;
+
+export const UPDATE_SNAKE = gql`
+  mutation updateSnake($outcome: String!) {
+    updateSnake(outcome: $outcome) {
+       snake
+    }
+  }
+`;

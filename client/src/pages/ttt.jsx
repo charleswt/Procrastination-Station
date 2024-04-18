@@ -21,7 +21,6 @@ export default function TTT() {
   
     useEffect(() => {
       if (!loading && data) {
-        console.log(data.getMe)
         document.querySelector('#ttt-score').innerHTML = data.getMe.ttt;
       } else if (loadCount === 5) {
         document.querySelector('#ttt-score').innerHTML = "Please Login/Signup to keep track of scores.";
@@ -91,7 +90,7 @@ export default function TTT() {
     function intGame() {
       items.forEach((item) => item.addEventListener("click", itemClicked));
       restartBtn.addEventListener("click", restartGame);
-      textStatus.textContent = `${currentPlayer}'s turn`;
+      textStatus.textContent = "";//`${currentPlayer}'s turn`
     }
 
     function itemClicked() {
@@ -113,7 +112,7 @@ export default function TTT() {
 
     function changePlayer() {
       currentPlayer = currentPlayer === "X" ? "O" : "X";
-      textStatus.textContent = `${currentPlayer}'s turn`;
+      textStatus.textContent = "";//`${currentPlayer}'s turn`
     }
 
     function checkWinner() {

@@ -9,7 +9,8 @@ const resolvers = {
         },
         getMe: async (parent, args, context) => {
             const user = await User.findOne({ username: context.user.username });
-            return user
+
+            return user;
         },
     },
     Mutation: {
@@ -26,7 +27,7 @@ const resolvers = {
                 console.log(err,'Error creating user');
             }
         },
-        login: async ( parent, { username, password } )=> {
+        login: async ( parent, { username, password })=> {
 
             const user = await User.findOne({username})
 
@@ -44,31 +45,43 @@ const resolvers = {
             const user = await User.findOne({username: context.user.username })
              try {
 
-                let wins = user.ttt.split(" ")[1]
-                let draws = user.ttt.split(" ")[3]
-                let losses = user.ttt.split(" ")[5]
+                let wins = user.ttt.split(" ")[1];
+                let draws = user.ttt.split(" ")[3];
+                let losses = user.ttt.split(" ")[5];
                 
                 if(outcome === "2"){
-                    wins++
-                    console.log(wins, "wins")
+                    wins++;
+                    console.log(wins, "wins");
                 } else if (outcome === "0"){
-                    draws++
-                    console.log(draws, "draws")
+                    draws++;
+                    console.log(draws, "draws");
                 } else {
-                    losses++
-                    console.log(losses, "losses")
+                    losses++;
+                    console.log(losses, "losses");
                 }
-                user.ttt = `Wins: ${wins} Draws: ${draws} Losses: ${losses}`
+                user.ttt = `Wins: ${wins} Draws: ${draws} Losses: ${losses}`;
 
-                user.save()
+                user.save();
 
-                return user
+                return user;
             } catch(err) {
                 throw new Error('Failed to update Tic-Tac-Toe score');
             }
         },
-        updateSnake: async (_, { username, snake }) => {
-            
+        updateSnake: async (_, { lastGamesScore }, context) => {
+            const user = await User.findOne({username: context.user.username })
+            try{
+                let score = user.snake.split(" ")[2];
+                if(lastGamesScore > score){
+                    score+=1;
+                    user.snake = `High Score: ${score}`;
+
+                user.save()
+                }
+                return user
+            }catch(err){
+                console.log(err)
+            }
         },
         updatePong: async (_, { username, pong }) => {
             
