@@ -157,20 +157,29 @@ const SnakeGame = () => {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  const isLoggedIn = !!data && !!data.getMe;
+
+  const centeredStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh'
+  };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <div style={centeredStyle}>
       <div style={{ textAlign: 'center' }}>
         <h2>Snake Game</h2>
+        {!isLoggedIn && (
+          <p>Please <a href="/login">Login</a> or <a href="/signup">Signup</a> to keep track of scores</p>
+        )}
         {!gameStarted ? (
           <button onClick={startGame}>Start Game</button>
         ) : (
           <>
             <GameBoard snake={snake} food={food} boardSize={BOARD_SIZE} />
             <div className="score">Score: {score}</div>
-            <div className="high-score">High Score: {data.getMe.snake}</div>
+            {isLoggedIn && <div className="high-score">High Score: {data.getMe.snake}</div>}
             {gameOver ? (
               <div>
                 <div className="game-over">Game Over!</div>
