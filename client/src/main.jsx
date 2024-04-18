@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './app.jsx'
 import Home from './pages/home.jsx'
 import Error from './pages/error.jsx'
-import Snake from './pages/SnakeGame/SnakeGame.jsx'
+import Snake from './pages/SnakeGame.jsx'
 import TTT from './pages/ttt.jsx'
 import Pong from './pages/pong.jsx'
 import Dino from './pages/dino.jsx'

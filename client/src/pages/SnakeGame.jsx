@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import GameBoard from './GameBoard';
-import { UPDATE_SNAKE } from '../../utils/mutations';
-import { GET_ME } from '../../utils/queries';
+import GameBoard from '../components/snake/GameBoard';
+import { UPDATE_SNAKE } from '../utils/mutations';
+import { GET_ME } from '../utils/queries';
 
 const SnakeGame = () => {
   const [snake, setSnake] = useState([[0, 0]]);
