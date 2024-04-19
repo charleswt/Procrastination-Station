@@ -8,7 +8,9 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import Header from './components/header/header';
-import Footer from './components/footer/footer'
+import Footer from './components/footer/footer';
+import ScoreCard from './components/scores/scores';
+
 
 // setting up httpLink
 const link = createHttpLink({
@@ -37,6 +39,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
         <Header />
+        <ScoreCard />
         <Outlet />
         <Footer />
     </ApolloProvider>
