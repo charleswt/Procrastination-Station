@@ -1,0 +1,21 @@
+import { Workbox } from 'workbox-window';
+import '../../public/css/style.css';
+const dino = require('../../public/images/dino.webp');
+const dinoLose = require('../../public/images/dinoGames/dino-lose.webp');
+const dinoRun0 = require('../../public/images/dinoGames/dino-run-0.webp');
+const dinoRun1 = require('../../public/images/dinoGames/dino-run-1.webp');
+const dinoGround = require('../../public/images/dinoGames/dino-ground.webp');
+
+const hero = require('../../public/images/hero.webp');
+const logo = require('../../public/images/logo.webp');
+const snake = require('../../public/images/snake.webp');
+const ttt = require('../../public/images/ttt.webp');
+
+// Check if service workers are supported
+if ('serviceWorker' in navigator) {
+  // Register workbox service worker
+  const workboxSW = new Workbox('./src-sw.js');
+  workboxSW.register();
+} else {
+  console.error('Service workers are not supported in this browser.');
+}

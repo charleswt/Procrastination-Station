@@ -3,12 +3,12 @@ import Link from '@mui/material/Link';
 export default function GameDisplayCards(){
     return (
         <div className='games-container'>
-        <img className="hero" src="<%= require('../../../public/images/hero.webp') %>"/>
+        <img className="hero" src="./public/images/hero.webp"/>
         
         <div className="game-card-center">
         <div className="single-game">
             <div className='games-flex-direction'>
-                <img className='game-img' src="<%= require('../../../public/images/ttt.webp') %>"/>
+                <img className='game-img' src="./public/images/ttt.webp"/>
                 <div className='game-tag'>
                     <p className='game-name-tag'>TIC-TAC-TOE</p>
                     <Link href="/ttt" ><button className="main-play-btn">PLAY</button></Link>
@@ -20,7 +20,7 @@ export default function GameDisplayCards(){
         <div className="game-card-center">
         <div className="single-game">
             <div className='games-flex-direction'>
-                <img className='game-img' src="<%= require('../../../public/images/dino.webp') %>"/>
+                <img className='game-img' src="./public/images/dino.webp"/>
                 <div className='game-tag'>
                     <p className='game-name-tag'>DINO</p>
                     <Link href="/dino" ><button className="main-play-btn">PLAY</button></Link>
@@ -32,7 +32,7 @@ export default function GameDisplayCards(){
         <div className="game-card-center">
         <div className="single-game">
             <div className='games-flex-direction'>
-                <img className='game-img' src="<%= require('../../../public/images/snake.webp') %>"/>
+                <img className='game-img' src="./public/images/snake.webp"/>
                 <div className='game-tag'>
                     <p className='game-name-tag'>SNAKE</p>
                     <Link href="/snake" ><button className="main-play-btn">PLAY</button></Link>

@@ -21,7 +21,7 @@ module.exports = {
     }),
     new InjectManifest({
       swSrc: './src-sw.js',
-      swDest: 'service-worker.js',
+      swDest: 'sw.js',
       maximumFileSizeToCacheInBytes: 10 * 1024 * 1024, // Example: Set maximum file size to 10 MB
     }),
     new HtmlWebpackPlugin({
