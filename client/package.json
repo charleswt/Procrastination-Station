@@ -1,8 +1,8 @@
 {
-    "name": "Procrastination-Station",
+    "name": "procrastination-station",
     "description": "description",
     "scripts": {
-        "dev": "webpack-dev-server",
+        "dev": "vite",
         "build": "vite build && webpack --mode production",
         "vite": "vite",
         "vBuild": "vite build",
