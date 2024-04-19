@@ -54,7 +54,7 @@ const startApolloServer = async () => {
           }
         }),
         success_url: `${process.env.CLIENT_URL}/success`,
-        cancel_url: `${process.env.CLIENT_URL}/cancel`,
+        cancel_url: `${process.env.CLIENT_URL}/`,
       })
       res.json({ url: session.url})
     }catch(err){

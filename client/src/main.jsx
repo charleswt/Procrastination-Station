@@ -12,6 +12,7 @@ import Pong from './pages/pong.jsx'
 import Dino from './pages/dino.jsx'
 import Terms from './pages/terms.jsx'
 import Contact from './pages/contact.jsx'
+import Success from './pages/success.jsx'
 
 // router set up
 const router = createBrowserRouter([
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
           {
             path: '/contact',
             element: <Contact />
+          },
+          {
+            path: '/success',
+            element: <Success />
           }
       ]
     }

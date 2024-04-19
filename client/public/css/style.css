@@ -476,3 +476,40 @@ header {
   max-width: fit-content;
   margin: 0 auto;
 }
+/* /////////// */
+/* Success.jsx */
+/* /////////// */
+
+.success-flex {
+  display:flex;
+  flex-direction: column;
+}
+
+.success {
+  font-size: 3.3rem;
+  margin-top: 20%;
+  text-align: center;
+  margin-bottom: 5vh;
+}
+
+.success-home {
+  font-size: 2.5rem;
+
+}
+
+.success-img {
+  height: 128px;
+}
+
+.go-home-success {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  text-decoration: none;
+}
+
+.go-home-success:visited {
+  color: black;
+}
