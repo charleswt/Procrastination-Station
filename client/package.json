@@ -1,10 +1,9 @@
 {
-    "name": "Procrastination-Station",
+    "name": "procrastination-station",
     "description": "description",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
-        "start": "webpack --watch",
+        "build": "vite build && webpack --mode production",
         "vite": "vite",
         "vBuild": "vite build",
         "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
