@@ -35,12 +35,12 @@ export default function DinoGame(){
             alert('you died')
             setScore(0)
             return false
-
+            window.location.reload();
         } else {
             setScore((score+1));
             return true;
         }
-    },700)
+    },500)
 // adding to score if alive checking each second
     setInterval(function(){
         if (isAlive){
