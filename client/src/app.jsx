@@ -40,9 +40,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
         <Header />
-        <ScoreCard />
         <Outlet />
-        <Leaderboard />
         <Footer />
     </ApolloProvider>
   );
