@@ -3,7 +3,6 @@ import Link from '@mui/material/Link';
 export default function GameDisplayCards(){
     return (
         <div className='games-container'>
-        <img className="hero" src="./public/images/hero.webp"/>
         
         <div className="game-card-center">
         <div className="single-game">

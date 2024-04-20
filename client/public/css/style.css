@@ -513,3 +513,17 @@ header {
 .go-home-success:visited {
   color: black;
 }
+/* ////////// */
+/* scores.jsx */
+/* ////////// */
+
+.score-card-h1 {
+  font-size: 2.3rem;
+  margin: .5rem;
+}
+
+.score-card {
+  text-align: center;
+  height: 20vh;
+  font-size: 2rem;
+}

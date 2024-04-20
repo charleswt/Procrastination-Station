@@ -1,5 +1,5 @@
 {
-    "name": "Procrastination-Station",
+    "name": "procrastination-station",
     "description": "description",
     "scripts": {
         "dev:vite": "vite",
