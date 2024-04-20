@@ -29,7 +29,7 @@ type Mutation {
   updateTtt(outcome: String!): User
   updateSnake(lastGamesScore: Int!): User
   updatePong(pong: String!): User
-  updateDino(dino: String!): User
+  updateDino(dino: Int!): User
 }
 `
 // Dino we can just save the time played and update it every time the time played is higher than the one in currently saved in the DB
