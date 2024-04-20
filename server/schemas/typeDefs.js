@@ -6,7 +6,7 @@ const typeDefs =
   ttt: String
   snake: Int
   pong: String
-  dino: String
+  dino: Int
 }
 
 type Auth {
