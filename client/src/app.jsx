@@ -10,6 +10,7 @@ import { setContext } from '@apollo/client/link/context';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import ScoreCard from './components/scores/scores';
+import Leaderboard from './components/leaderboard/leaderboard'
 
 
 // setting up httpLink
@@ -41,6 +42,7 @@ function App() {
         <Header />
         <ScoreCard />
         <Outlet />
+        <Leaderboard />
         <Footer />
     </ApolloProvider>
   );

@@ -513,6 +513,7 @@ header {
 .go-home-success:visited {
   color: black;
 }
+
 /* ////////// */
 /* scores.jsx */
 /* ////////// */
@@ -527,3 +528,8 @@ header {
   height: 20vh;
   font-size: 2rem;
 }
+
+/* /////////////// */
+/* leaderboard.jsx */
+/* /////////////// */
+
