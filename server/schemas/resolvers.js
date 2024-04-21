@@ -16,9 +16,9 @@ const resolvers = {
     Mutation: {
         addUser: async (parent, { username, password })=>{
             const ttt = 'Wins: 0 Draws: 0 Losses: 0';
-            const snake = '0';
-            const pong = '0';
-            const dino = '0';
+            const snake = 0;
+            const pong = 0;
+            const dino = 0;
             try{
                 const user = User.create({ username, password, ttt, snake, pong, dino })
                 const token = packToken(user)
