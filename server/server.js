@@ -30,7 +30,7 @@ const startApolloServer = async () => {
   const cors = require('cors')
 
   app.use(cors({ origin: 'http://localhost:3000', }))
-  
+
   const storeItems = new Map([
     [ 1, { priceInCents: 100, name: "Donate" }]
   ])

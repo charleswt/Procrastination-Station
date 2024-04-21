@@ -14,8 +14,9 @@ export default function Header() {
 
     // STRIPE FETCH //
     useEffect(() => {
-        if(!Auth.checkExpiration){
-            Auth.logout;
+        if(Auth.checkExpiration){
+            console.log(Auth.checkExpiration)
+            // Auth.logout;
             alert(`Session Expired! Please login to save scores.`)
         } 
         const donateStripeButton = document.querySelector('#donateStripe');
