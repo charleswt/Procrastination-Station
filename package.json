@@ -4,8 +4,8 @@
     "description": "",
     "main": "server.js",
     "scripts": {
-        "start:vite": "concurrently \"cd server && npm run server\" \"cd client && npm run dev:vite\"",
-        "start:webpack": "concurrently \"cd server && npm run server\" \"cd client && npm run dev:webpack\"",
+        "start:vite": "cd server && npm run server && cd ../client && npm run dev:vite",
+        "start:webpack": "cd server && npm run server cd ../client && npm run dev:webpack",
         "start": "npm run build && cd server && node server.js",
         "server": "cd server && nodemon server.js --ignore client",
         "build:vite": "cd client && npm run build:vite",
