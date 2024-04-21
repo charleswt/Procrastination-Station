@@ -9,20 +9,43 @@ export default function Leaderboard() {
     if (data && !loading) {
       const usersCopy = [...data.getUsers];
   
-      const sortedUsers = usersCopy.sort((a, b) => {
+      const sortedTtt = usersCopy.sort((a, b) => {
 
         return b.ttt.split(" ")[1] - a.ttt.split(" ")[1]
         }
       );
   
-      const topThree = sortedUsers.slice(0, 3);
-      console.log(topThree)
+      const top3Ttt = sortedTtt.slice(0, 3);
   
-      const leaderboardHTML = topThree.map((user) => (
+      const leaderboardTtt = top3Ttt.map((user) => (
         `<p key="${user.username}">${user.username}: ${user.ttt}</p>`
       ));
       
-      document.querySelector('#getUsers').innerHTML = leaderboardHTML;
+      document.querySelector('#leaderboardTtt').innerHTML = leaderboardTtt;
+
+      const sortedDino = usersCopy.sort((a, b)=>{
+        return b.dino - a.dino
+      })
+
+      const top3Dino = sortedDino.slice(0, 3);
+
+      const leaderboardDino = top3Dino.map((user) => (
+        `<p key="${user.username}">${user.username}: ${user.dino}</p>`
+      ));
+
+      document.querySelector('#leaderboardDino').innerHTML = leaderboardDino;
+
+      const sortedSnake = usersCopy.sort((a, b)=>{
+        return b.dino - a.dino
+      })
+
+      const top3Snake = sortedSnake.slice(0, 3);
+
+      const leaderboardSnake = top3Snake.map((user) => (
+        `<p key="${user.username}">${user.username}: ${user.dino}</p>`
+      ));
+
+      document.querySelector('#leaderboardSnake').innerHTML = leaderboardSnake;
     }
   }, [data, loading]);
 
@@ -32,7 +55,11 @@ export default function Leaderboard() {
     <div className="leaderboard-position">
         <p className="leaderboard-header">Leader Board</p>
         <p className="leaderboard-sub-headers">Tic-Tac-Toe</p>
-        <div id="getUsers" className="leaderboard-scores"></div>
+        <div id="leaderboardTtt" className="leaderboard-scores"></div>
+        <p className="leaderboard-sub-headers">Dino</p>
+        <div id="leaderboardDino" className="leaderboard-scores"></div>
+        <p className="leaderboard-sub-headers">Snake</p>
+        <div id="leaderboardSnake" className="leaderboard-scores"></div>
     </div>
   );
 }
