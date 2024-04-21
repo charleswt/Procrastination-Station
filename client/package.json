@@ -2,15 +2,16 @@
     "name": "procrastination-station",
     "description": "description",
     "scripts": {
-        "dev": "vite",
-        "build": "vite build && webpack --mode production",
-        "vite": "vite",
-        "vBuild": "vite build",
+        "dev:vite": "vite",
+        "dev:webpack": "webpack-dev-server --mode production",
+        "build:webpack": "webpack --mode production",
+        "build:vite": "vite build",
         "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview"
     },
     "dependencies": {
         "@apollo/client": "^3.7.14",
+        "@babel/preset-react": "^7.24.1",
         "@emotion/react": "^11.11.4",
         "@emotion/styled": "^11.11.5",
         "@mui/icons-material": "^5.15.15",

@@ -476,3 +476,79 @@ header {
   max-width: fit-content;
   margin: 0 auto;
 }
+/* /////////// */
+/* Success.jsx */
+/* /////////// */
+
+.success-flex {
+  display:flex;
+  flex-direction: column;
+}
+
+.success {
+  font-size: 3.3rem;
+  margin-top: 20%;
+  text-align: center;
+  margin-bottom: 5vh;
+}
+
+.success-home {
+  font-size: 2.5rem;
+
+}
+
+.success-img {
+  height: 128px;
+}
+
+.go-home-success {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  text-decoration: none;
+}
+
+.go-home-success:visited {
+  color: black;
+}
+
+/* ////////// */
+/* scores.jsx */
+/* ////////// */
+
+.score-card-h1 {
+  font-size: 2.3rem;
+  margin: .5rem;
+}
+
+.score-card {
+  text-align: center;
+  height: 20vh;
+  font-size: 1.9rem;
+}
+
+/* /////////////// */
+/* leaderboard.jsx */
+/* /////////////// */
+
+.leaderboard-position {
+  text-align: center;
+  margin-bottom: 10vh;
+}
+
+.leaderboard-header {
+  font-size: 2.3rem;
+  margin-bottom: 1rem;
+}
+
+.leaderboard-sub-headers {
+  font-size: 1.9rem;
+  margin-bottom: .5rem;
+}
+
+.leaderboard-scores {
+  font-size: 1.9rem;
+  margin: .3rem;
+}
