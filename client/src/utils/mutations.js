@@ -47,3 +47,11 @@ export const UPDATE_SNAKE = gql`
     }
   }
 `;
+
+export const UPDATE_DINO = gql`
+  mutation updateDino($dinoScore: Int!) {
+    updateDino(dinoScore: $dinoScore) {
+      dino
+    }
+  }
+`;

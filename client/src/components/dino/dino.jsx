@@ -1,18 +1,23 @@
 import './style.css'
 import { useState, useEffect } from 'react';
+import { UPDATE_DINO } from '../../utils/mutations';
+import { useMutation, useQuery } from '@apollo/client';
+import { GET_ME } from '../../utils/queries'
 
 export default function DinoGame(){
 
     let [jump, setJump] = useState("")
     let [score, setScore] = useState(0)
-    let dinoScore = ()=> {localStorage.setItem('dinoScore', score);} 
-    let savedScore = localStorage.getItem('dinoScore')
+    // let dinoScore = ()=> {localStorage.setItem('dinoScore', score);} 
+    // let savedScore = localStorage.getItem('dinoScore')
    
-    useEffect(()=>{
-        if (score > savedScore){
-            dinoScore(score)
-        }
-    }, [score])
+    const updateDino = useMutation(UPDATE_DINO)
+    const { loading, error, data, refetch } = useQuery(GET_ME);
+    // useEffect(()=>{
+    //     if (score > savedScore){
+    //         dinoScore(score)
+    //     }
+    // }, [score])
 
     function keyDown(){
         if (jump === ""){
@@ -35,7 +40,7 @@ export default function DinoGame(){
             alert('you died')
             setScore(0)
             return false
-            window.location.reload();
+
         } else {
             setScore((score+1));
             return true;
@@ -48,13 +53,26 @@ export default function DinoGame(){
         } 
     }, 700)
 
+    // using mutation to set score in database, mutation already checks if current score is more than saved score
+    const updateDinoScore = async ()=>{
+        try{
+            await updateDino({
+                variables: {
+                    dinoScore: score,
+                },
+                refetchQueries: [{query: GET_ME}]
+            })
+        } catch(err){
+            console.log(err, 'Cannot updated Dino Score');
+        }
+    };
 
     return (
         <div className="game">
             <div className= {jump} id="dino" onClick={keyDown}></div>
             <div id="cactus"></div>
             <br></br>
-            <div id="score"> High Score: {savedScore}</div>
+            <div id="score"> High Score: {score}</div>
         </div>
     )
 }
