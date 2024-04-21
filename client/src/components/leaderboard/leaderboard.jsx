@@ -10,23 +10,17 @@ export default function Leaderboard() {
       const usersCopy = [...data.getUsers];
   
       const sortedUsers = usersCopy.sort((a, b) => {
-        const getTttScore = (user) => {
-          const tttScoreReg = /Wins: (\d+) Draws: (\d+) Losses: (\d+)/;
-          const matchA = user.pong.match(tttScoreReg);
-          const matchB = user.pong.match(tttScoreReg);
-          if (matchA && matchB) {
-            return parseInt(matchB[1]) - parseInt(matchB[2]) - (parseInt(matchA[1]) - parseInt(matchA[2])); // Calculate net wins
-          }
-          return 0;
-        };
-        return getTttScore(b) - getTttScore(a);
-      });
+
+        return b.ttt.split(" ")[1] - a.ttt.split(" ")[1]
+        }
+      );
   
       const topThree = sortedUsers.slice(0, 3);
+      console.log(topThree)
   
-      const leaderboardHTML = topThree.map((user) => {
-        return `<p>${user.username}: ${user.ttt}</p>`;
-      })
+      const leaderboardHTML = topThree.map((user) => (
+        `<p key="${user.username}">${user.username}: ${user.ttt}</p>`
+      ));
       
       document.querySelector('#getUsers').innerHTML = leaderboardHTML;
     }
@@ -38,7 +32,7 @@ export default function Leaderboard() {
     <div className="leaderboard-position">
         <p className="leaderboard-header">Leader Board</p>
         <p className="leaderboard-sub-headers">Tic-Tac-Toe</p>
-        <p id="getUsers" className="leaderboard-scores"></p>
+        <div id="getUsers" className="leaderboard-scores"></div>
     </div>
-)
+  );
 }
