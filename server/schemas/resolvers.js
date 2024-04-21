@@ -83,8 +83,18 @@ const resolvers = {
         updatePong: async (_, { username, pong }) => {
             
         },
-        updateDino: async (_, { username, dino }) => {
-            
+        
+        updateDino: async (_, { dinoScore }, context) => {
+            const user = await User.findOne({ username: context.user.username });
+            try{
+                if (dinoScore > user.dino){
+                    user.dino = dinoScore;
+                    user.save();
+                }
+                return user;
+            } catch(err){
+                console.log(err);
+            }
         }
     }
 };
