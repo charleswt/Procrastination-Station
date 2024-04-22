@@ -7,7 +7,7 @@
         "start:vite": "cd server && node server.js",
         "start:webpack": "concurrently \"cd server && npm run server\" \"cd client && npm run dev:webpack\"",
         "start": "npm run build && cd server && node server.js",
-        "server": "cd server && nodemon server.js --ignore client",
+        "server": "cd server && npm run server",
         "build:vite": "npm run install:server && npm run install:client && cd client && npm run build:vite",
         "build:webpack": "npm run install:server && npm run install:client && cd client && npm run build:webpack",
         "build:seed": "npm run install:server && cd server && npm run seed && npm run install:client && cd ../client && npm run build",
