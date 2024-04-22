@@ -22,7 +22,7 @@ export default function Header() {
         const donateStripeButton = document.querySelector('#donateStripe');
         if (donateStripeButton) {
             donateStripeButton.addEventListener('click', () => {
-                fetch(`https://procrastination-station-4w0w.onrender.com/create-checkout-session`, {
+                fetch(`http://localhost:10000/create-checkout-session`, {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
@@ -167,7 +167,7 @@ export default function Header() {
     return (
         <>
             <header>
-                <img onClick={logoHome} src="/images/logo.webp" alt="logo" className="header-logo"/>
+                <img onClick={logoHome} src="../../../public/images/logo.webp" alt="logo" className="header-logo"/>
                         <p className='header-tag'>{text}</p>
                         <p id='donateStripe' className='header-donate header-elem-position'>Donate</p>
                         {isLoggedIn ? ( 
