@@ -14,11 +14,11 @@ export default function Header() {
 
     // STRIPE FETCH //
     useEffect(() => {
-        if(Auth.checkExpiration){
-            console.log(Auth.checkExpiration)
-            // Auth.logout;
-            alert(`Session Expired! Please login to save scores.`)
-        } 
+        // if(!Auth.checkExpiration){
+        //     console.log(Auth.checkExpiration)
+        //     // Auth.logout;
+        //     // alert(`Session Expired! Please login to save scores.`)
+        // } 
         const donateStripeButton = document.querySelector('#donateStripe');
         if (donateStripeButton) {
             donateStripeButton.addEventListener('click', () => {

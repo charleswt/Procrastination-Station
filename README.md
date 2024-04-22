@@ -52,17 +52,17 @@ This project is licensed under the MIT License. See the [MIT License](https://gi
 ## Contributing
   ### Main Contributers
 
-  This project was developed by: 
-  [Charles Tiffany](https://github.com/charleswt/).
-  [Robert Solorzano](https://github.com/robertsolorzano/).
+  This project was developed by: <br/>
+  [Charles Tiffany](https://github.com/charleswt/).<br/>
+  [Robert Solorzano](https://github.com/robertsolorzano/).<br/>
   [Manya](https://github.com/manyanara/).
 
   ### How You Can Contribute
 
   If you like to to contribute by adding a game or fixing a potential bug etc.
 
-  . Fork this repository
-  . Create a new Branch
+  . Fork this repository<br/>
+  . Create a new Branch<br/>
   . Push your code with a detailed description 
 
   We will go over your code and get back to you about the result, in some cases we may alter your code to fix errors or to improve playabilty/useability.
