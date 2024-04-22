@@ -29,7 +29,7 @@ const startApolloServer = async () => {
   const stripe = require('stripe')(process.env.STRIPE_KEY)
   const cors = require('cors')
 
-  app.use(cors({ origin: path, }))
+  app.use(cors())
 
   const storeItems = new Map([
     [ 1, { priceInCents: 100, name: "Donate" }]
