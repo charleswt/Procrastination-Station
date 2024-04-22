@@ -8,7 +8,7 @@ export default defineConfig({
     open: true,
     proxy: {
       '/graphql': {
-        target: 'https://procrastination-station.onrender.com/graphql',
+        target: 'https://procrastination-station.onrender.com',
         changeOrigin: true,
         secure: false,
       },
