@@ -7,8 +7,10 @@ const GameBoard = ({ snake, food, boardSize }) => {
     position: 'relative',
     width: `${boardSize * 20}px`,
     height: `${boardSize * 20}px`,
-    border: '1px solid black',
+    border: '2px solid black',
     margin: 'auto',
+    borderRadius: '4px', 
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.7)',
   };
 
   return (
