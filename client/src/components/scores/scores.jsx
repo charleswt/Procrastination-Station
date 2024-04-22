@@ -16,10 +16,10 @@ export default function ScoreCard() {
     return (
         <>
             {data === undefined ? (
-                <img className="hero" src="./public/images/hero.webp"/>
+                <img className="hero" src="/images/hero.webp"/>
             ) : (
                 <>
-                <img className="hero" src="./public/images/hero.webp"/>
+                <img className="hero" src="/images/hero.webp"/>
                 <div className="score-card">
                     <h1 className='score-card-h1'>Score Card</h1>
                     <h2>Tic-Tac-Toe</h2>
