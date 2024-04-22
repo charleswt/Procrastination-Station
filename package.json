@@ -8,20 +8,23 @@
         "start:webpack": "concurrently \"cd server && npm run server\" \"cd client && npm run dev:webpack\"",
         "start": "npm run build && cd server && node server.js",
         "server": "cd server && nodemon server.js --ignore client",
-        "build:vite": "cd client && npm run build:vite",
-        "build:webpack": "cd client && npm run build:webpack",
-        "build:seed": "cd server && npm run seed && cd ../client && npm run build",
-        "install": "cd server && npm i && cd ../client && npm i",
+        "build:vite": "npm run install:server && npm run install:client && cd client && npm run build:vite",
+        "build:webpack": "npm run install:server && npm run install:client && cd client && npm run build:webpack",
+        "build:seed": "npm run install:server && cd server && npm run seed && npm run install:client && cd ../client && npm run build",
+        "install": "npm run install:server && npm run install:client",
+        "install:server": "cd server && npm install",
+        "install:client": "cd client && npm install",
         "client": "cd client && npm start",
         "seed": "cd server && npm run seed"
-    },
+      },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "concurrently": "^8.2.0"
+      "concurrently": "^8.2.0"
     },
     "dependencies": {
-        "dotenv": "^16.4.5"
+      "dotenv": "^16.4.5"
     }
-}
+  }
+  
