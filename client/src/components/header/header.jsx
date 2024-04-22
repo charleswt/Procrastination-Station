@@ -22,7 +22,7 @@ export default function Header() {
         const donateStripeButton = document.querySelector('#donateStripe');
         if (donateStripeButton) {
             donateStripeButton.addEventListener('click', () => {
-                fetch(`${process.env.CLIENT_URL}/create-checkout-session`, {
+                fetch(`${{}.CLIENT_URL}/create-checkout-session`, {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
