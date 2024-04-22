@@ -29,8 +29,8 @@ const startApolloServer = async () => {
   const stripe = require('stripe')(process.env.STRIPE_KEY)
   const cors = require('cors')
 
-  app.use(cors({ origin: 'http://localhost:3000', }))
-  
+  app.use(cors({ origin: path, }))
+
   const storeItems = new Map([
     [ 1, { priceInCents: 100, name: "Donate" }]
   ])
@@ -53,8 +53,8 @@ const startApolloServer = async () => {
             quantity: item.quantity
           }
         }),
-        success_url: `${process.env.CLIENT_URL}/success`,
-        cancel_url: `${process.env.CLIENT_URL}/`,
+        success_url: `${path}/success`,
+        cancel_url: `${path}/`,
       })
       res.json({ url: session.url})
     }catch(err){

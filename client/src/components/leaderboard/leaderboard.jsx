@@ -36,23 +36,21 @@ export default function Leaderboard() {
       document.querySelector('#leaderboardDino').innerHTML = leaderboardDino;
 
       const sortedSnake = usersCopy.sort((a, b)=>{
-        return b.dino - a.dino
+        return b.snake - a.snake
       })
 
       const top3Snake = sortedSnake.slice(0, 3);
 
       const leaderboardSnake = top3Snake.map((user) => (
-        `<p key="${user.username}">${user.username}: ${user.dino}</p>`
+        `<p key="${user.username}">${user.username}: ${user.snake}</p>`
       ));
 
       document.querySelector('#leaderboardSnake').innerHTML = leaderboardSnake;
     }
   }, [data, loading]);
 
-  if (loading) return <p>Loading...</p>;
-
   return (
-    <div className="leaderboard-position">
+    <>{data && <div className="leaderboard-position">
         <p className="leaderboard-header">Leader Board</p>
         <p className="leaderboard-sub-headers">Tic-Tac-Toe</p>
         <div id="leaderboardTtt" className="leaderboard-scores"></div>
@@ -60,6 +58,8 @@ export default function Leaderboard() {
         <div id="leaderboardDino" className="leaderboard-scores"></div>
         <p className="leaderboard-sub-headers">Snake</p>
         <div id="leaderboardSnake" className="leaderboard-scores"></div>
-    </div>
+        <p className="leaderboard-marg"></p>
+    </div>}</>
+    
   );
 }
