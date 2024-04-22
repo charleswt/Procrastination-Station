@@ -22,7 +22,7 @@ export default function Header() {
         const donateStripeButton = document.querySelector('#donateStripe');
         if (donateStripeButton) {
             donateStripeButton.addEventListener('click', () => {
-                fetch(`${{}.CLIENT_URL}/create-checkout-session`, {
+                fetch('http://localhost:10000/create-checkout-session', {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
@@ -38,7 +38,8 @@ export default function Header() {
                 }).then(({ url }) => {
                     window.location = url;
                 }).catch(e => {
-                    console.log(e.error);
+                    console.log(e);
+                    console.log(window.location)
                 });
             });
         }
