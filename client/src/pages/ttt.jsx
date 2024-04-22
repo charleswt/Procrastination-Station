@@ -20,7 +20,7 @@ export default function TTT() {
     }, [loading]);
     
     useEffect(() => {
-      if (!loading && data) {
+      if (data) {
         document.querySelector('#ttt-score').innerHTML = data.getMe.ttt;
       } else if (loadCount === 5) {
         document.querySelector('#ttt-score').innerHTML = "Please Login/Signup to keep track of scores.";
@@ -63,8 +63,8 @@ export default function TTT() {
             gridElement.style.color = '#ff0000';
             gridElement.style.textShadow = '0px 0px 10px #ff0000';
         } else if (gridContent === 'O') {
-            gridElement.style.color = '#BF40BF';
-            gridElement.style.textShadow = '0px 0px 10px #BF40BF';
+            gridElement.style.color = '#ADD8E6';
+            gridElement.style.textShadow = '0px 0px 10px #ADD8E6';
         }
     });
 };

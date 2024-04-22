@@ -1,9 +1,13 @@
 import Link from '@mui/material/Link';
+import Leaderboard from '../leaderboard/leaderboard';
+import ScoreCard from '../scores/scores';
+
 
 export default function GameDisplayCards(){
     return (
+    <>
+      <ScoreCard/>
         <div className='games-container'>
-        <img className="hero" src="./public/images/hero.webp"/>
         
         <div className="game-card-center">
         <div className="single-game">
@@ -41,5 +45,7 @@ export default function GameDisplayCards(){
         </div>
         </div>
         </div>
+        <Leaderboard/>
+        </>
     )
 };

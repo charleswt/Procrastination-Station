@@ -16,9 +16,9 @@ const resolvers = {
     Mutation: {
         addUser: async (parent, { username, password })=>{
             const ttt = 'Wins: 0 Draws: 0 Losses: 0';
-            const snake = '0';
-            const pong = '0';
-            const dino = '0';
+            const snake = 0;
+            const pong = 0;
+            const dino = 0;
             try{
                 const user = User.create({ username, password, ttt, snake, pong, dino })
                 const token = packToken(user)
@@ -83,8 +83,18 @@ const resolvers = {
         updatePong: async (_, { username, pong }) => {
             
         },
-        updateDino: async (_, { username, dino }) => {
-            
+        
+        updateDino: async (_, { dinoScore }, context) => {
+            const user = await User.findOne({ username: context.user.username });
+            try{
+                if (dinoScore > user.dino){
+                    user.dino = dinoScore;
+                    user.save();
+                }
+                return user;
+            } catch(err){
+                console.log(err);
+            }
         }
     }
 };

@@ -2,81 +2,81 @@
     {
         "username": "Manya",
         "password": "abcd",
-        "ttt": "Wins: 0 Draws: 0 Losses: 0",
-        "snake": 0,
-        "pong": "Wins: 3  Losses: 5",
-        "dino": "Wins: 3  Losses: 5"
+        "ttt": "Wins: 3 Draws: 1 Losses: 2",
+        "snake": 7,
+        "pong": 7,
+        "dino": 15
     },
     {
         "username": "Charlie",
         "password": "abcd",
         "ttt": "Wins: 0 Draws: 0 Losses: 0",
         "snake": 0,
-        "pong": "Wins: 5  Losses: 5",
-        "dino": "Wins: 2  Losses: 8"
+        "pong": 10,
+        "dino": 0
     },
     {
         "username": "Robert",
         "password": "abcd",
-        "ttt": "Wins: 0 Draws: 0 Losses: 0",
-        "snake": 0,
-        "pong": "Wins: 4  Losses: 6",
-        "dino": "Wins: 3  Losses: 5"
+        "ttt": "Wins: 2 Draws: 0 Losses: 3",
+        "snake": 10,
+        "pong": 1,
+        "dino": 5
     },
     {
         "username": "Bob",
         "password": "abcd",
-        "ttt": "Wins: 0 Draws: 0 Losses: 0",
-        "snake": 0,
-        "pong": "Wins: 2  Losses: 8",
-        "dino": "Wins: 5  Losses: 5"
+        "ttt": "Wins: 1 Draws: 1 Losses: 3",
+        "snake": 5,
+        "pong": 6,
+        "dino": 10
     },
     {
         "username": "Eva",
         "password": "abcd",
-        "ttt": "Wins: 0 Draws: 0 Losses: 0",
-        "snake": 0,
-        "pong": "Wins: 6  Losses: 4",
-        "dino": "Wins: 4  Losses: 6"
+        "ttt": "Wins: 4 Draws: 0 Losses: 2",
+        "snake": 12,
+        "pong": 9,
+        "dino": 8
     },
     {
         "username": "David",
         "password": "abcd",
-        "ttt": "Wins: 0 Draws: 0 Losses: 0",
-        "snake": 0,
-        "pong": "Wins: 7  Losses: 3",
-        "dino": "Wins: 2  Losses: 8"
+        "ttt": "Wins: 3 Draws: 2 Losses: 1",
+        "snake": 8,
+        "pong": 5,
+        "dino": 11
     },
     {
         "username": "Sophie",
         "password": "abcd",
-        "ttt": "Wins: 0 Draws: 0 Losses: 0",
-        "snake": 0,
-        "pong": "Wins: 2  Losses: 8",
-        "dino": "Wins: 5  Losses: 5"
+        "ttt": "Wins: 2 Draws: 1 Losses: 3",
+        "snake": 3,
+        "pong": 3,
+        "dino": 14
     },
     {
         "username": "Liam",
         "password": "abcd",
-        "ttt": "Wins: 0 Draws: 0 Losses: 0",
-        "snake": 0,
-        "pong": "Wins: 8  Losses: 2",
-        "dino": "Wins: 5  Losses: 5"
+        "ttt": "Wins: 5 Draws: 0 Losses: 1",
+        "snake": 15,
+        "pong": 12,
+        "dino": 3
     },
     {
         "username": "Olivia",
         "password": "abcd",
-        "ttt": "Wins: 0 Draws: 0 Losses: 0",
-        "snake": 0,
-        "pong": "Wins: 3  Losses: 7",
-        "dino": "Wins: 4  Losses: 6"
+        "ttt": "Wins: 2 Draws: 2 Losses: 2",
+        "snake": 6,
+        "pong": 7,
+        "dino": 9
     },
     {
         "username": "Noah",
         "password": "abcd",
-        "ttt": "Wins: 0 Draws: 0 Losses: 0",
-        "snake": 0,
-        "pong": "Wins: 4  Losses: 6",
-        "dino": "Wins: 6  Losses: 4"
+        "ttt": "Wins: 1 Draws: 0 Losses: 4",
+        "snake": 4,
+        "pong": 5,
+        "dino": 16
     }
 ]

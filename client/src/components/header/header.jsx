@@ -14,6 +14,11 @@ export default function Header() {
 
     // STRIPE FETCH //
     useEffect(() => {
+        // if(!Auth.checkExpiration){
+        //     console.log(Auth.checkExpiration)
+        //     // Auth.logout;
+        //     // alert(`Session Expired! Please login to save scores.`)
+        // } 
         const donateStripeButton = document.querySelector('#donateStripe');
         if (donateStripeButton) {
             donateStripeButton.addEventListener('click', () => {
@@ -53,7 +58,6 @@ export default function Header() {
             const { data } = await login({
                 variables: { ...formState },
             });
-            console.log(data)
             Auth.login(data.login.token);
         
     };
@@ -163,7 +167,7 @@ export default function Header() {
     return (
         <>
             <header>
-                <img onClick={logoHome} src="./public/images/logo.webp" alt="logo" className="header-logo"/>
+                <img onClick={logoHome} src="../../../public/images/logo.webp" alt="logo" className="header-logo"/>
                         <p className='header-tag'>{text}</p>
                         <p id='donateStripe' className='header-donate header-elem-position'>Donate</p>
                         {isLoggedIn ? ( 
@@ -231,6 +235,7 @@ export default function Header() {
                     </div>
                     </>
             }
+            
         </>
     );
 }
