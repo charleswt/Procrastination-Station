@@ -1,9 +1,50 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useQuery, useMutation } from '@apollo/client';
+import { UPDATE_TTT }  from '../utils/mutations';
+import { GET_ME }  from '../utils/queries';
 import '../../public/css/style.css';
 
 export default function TTT() {
+  const [updateTtt] = useMutation(UPDATE_TTT);
+  const { loading, data } = useQuery(GET_ME);
+  const [loadingText, setLoadingText] = useState('Loading');
+  const [loadCount, setLoadCount] = useState(0);
 
-  useEffect(() => {
+    useEffect(() => {
+      let interval;
+      if (loading) {
+        interval = setInterval(() => {
+          setLoadCount(prevCount => prevCount + 1);
+        }, 400)
+      }
+    }, [loading]);
+    
+    useEffect(() => {
+      if (data) {
+        document.querySelector('#ttt-score').innerHTML = data.getMe.ttt;
+      } else if (loadCount === 5) {
+        document.querySelector('#ttt-score').innerHTML = "Please Login/Signup to keep track of scores.";
+      } else {
+        switch (loadCount) {
+          case 0:
+            setLoadingText('Loading');
+            break;
+          case 1:
+            setLoadingText('Loading.');
+            break;
+          case 2:
+            setLoadingText('Loading..');
+            break;
+          case 3:
+            setLoadingText('Loading...');
+            break;
+          default:
+            setLoadingText('Loading');
+        }
+      }
+    }, [loading, loadCount, data]);
+
+  useEffect(() => {    
     const items = document.querySelectorAll(".grid-item");
     const textStatus = document.querySelector("#playerTurn");
     const restartBtn = document.querySelector("#restart");
@@ -22,8 +63,8 @@ export default function TTT() {
             gridElement.style.color = '#ff0000';
             gridElement.style.textShadow = '0px 0px 10px #ff0000';
         } else if (gridContent === 'O') {
-            gridElement.style.color = '#BF40BF';
-            gridElement.style.textShadow = '0px 0px 10px #BF40BF';
+            gridElement.style.color = '#ADD8E6';
+            gridElement.style.textShadow = '0px 0px 10px #ADD8E6';
         }
     });
 };
@@ -45,10 +86,11 @@ export default function TTT() {
 
     intGame();
 
+
     function intGame() {
       items.forEach((item) => item.addEventListener("click", itemClicked));
       restartBtn.addEventListener("click", restartGame);
-      textStatus.textContent = `${currentPlayer}'s turn`;
+      textStatus.textContent = "";//`${currentPlayer}'s turn`
     }
 
     function itemClicked() {
@@ -70,7 +112,7 @@ export default function TTT() {
 
     function changePlayer() {
       currentPlayer = currentPlayer === "X" ? "O" : "X";
-      textStatus.textContent = `${currentPlayer}'s turn`;
+      textStatus.textContent = "";//`${currentPlayer}'s turn`
     }
 
     function checkWinner() {
@@ -92,9 +134,15 @@ export default function TTT() {
 
       if (roundWon) {
         textStatus.textContent = `${currentPlayer} wins!`;
+        if(currentPlayer === `X`){
+          updateTtt({ variables: { outcome: '2' } })
+        } else {
+          updateTtt({ variables: { outcome: '1' } })
+        }
         running = false;
       } else if (!options.includes("")) {
         textStatus.textContent = `Draw!`;
+        updateTtt({ variables: { outcome: '0' } })
         running = false;
       } else {
         changePlayer();
@@ -104,8 +152,9 @@ export default function TTT() {
     function restartGame() {
       location.reload();
     }
+
     function itemClicked() {
-      const itemIndex = this.getAttribute("itemIndex");
+      const itemIndex = this.getAttribute("itemindex");
 
       if (options[itemIndex] !== "" || !running) {
           return;
@@ -116,7 +165,7 @@ export default function TTT() {
       checkWinner();
 
       if (running) {
-          setTimeout(simulateBotMove, 500);
+        simulateBotMove()
       }
   }
 
@@ -128,13 +177,39 @@ export default function TTT() {
           }
       });
 
+      for (let i = 0; i < winConditions.length; i++) {
+        const condition = winConditions[i];
+        const itemA = options[condition[0]];
+        const itemB = options[condition[1]];
+        const itemC = options[condition[2]];
+
+        switch(`${itemA},${itemB},${itemC}`) {
+          case "X,X,":
+              if (itemC === "") {
+                  updateItem(items[condition[2]], condition[2]);
+                  return checkWinner();
+              }
+          case "X,,X":
+              if (itemB === "") {
+                  updateItem(items[condition[1]], condition[1]);
+                  return checkWinner();
+              }
+          case ",X,X":
+              if (itemA === "") {
+                  updateItem(items[condition[0]], condition[0]);
+                  return checkWinner();
+              }
+              break;
+      }
+  }
+
       const randomIndex = Math.floor(Math.random() * emptyCells.length);
       const chosenIndex = Math.random() < 0.9 ? emptyCells[randomIndex] : Math.floor(Math.random() * 9);
 
       updateItem(items[chosenIndex], chosenIndex);
 
       checkWinner();
-  }
+}
 
 }, []);
 
@@ -144,18 +219,19 @@ export default function TTT() {
         <div className="container">
           <h1 className='ttt-tag'>Tic-Tac-Toe</h1>
           <div className="grid">
-            <div itemIndex="0" className="grid-item grid-1"></div>
-            <div itemIndex="1" className="grid-item grid-2"></div>
-            <div itemIndex="2" className="grid-item grid-3"></div>
-            <div itemIndex="3" className="grid-item grid-4"></div>
-            <div itemIndex="4" className="grid-item grid-5"></div>
-            <div itemIndex="5" className="grid-item grid-6"></div>
-            <div itemIndex="6" className="grid-item grid-7"></div>
-            <div itemIndex="7" className="grid-item grid-8"></div>
-            <div itemIndex="8" className="grid-item grid-9"></div>
+            <div itemindex="0" className="grid-item grid-1"></div>
+            <div itemindex="1" className="grid-item grid-2"></div>
+            <div itemindex="2" className="grid-item grid-3"></div>
+            <div itemindex="3" className="grid-item grid-4"></div>
+            <div itemindex="4" className="grid-item grid-5"></div>
+            <div itemindex="5" className="grid-item grid-6"></div>
+            <div itemindex="6" className="grid-item grid-7"></div>
+            <div itemindex="7" className="grid-item grid-8"></div>
+            <div itemindex="8" className="grid-item grid-9"></div>
           </div>
           <h2 id="playerTurn"></h2>
           <button id="restart">Restart</button>
+          <h3 id='ttt-score'>{loadingText}</h3>
         </div>
       </div>
     </div>

@@ -12,6 +12,39 @@ export default function Header() {
     const [loginForm, setLogin] = useState(false);
     const [signupForm, setSignup] = useState(false);
 
+    // STRIPE FETCH //
+    useEffect(() => {
+        // if(!Auth.checkExpiration){
+        //     console.log(Auth.checkExpiration)
+        //     // Auth.logout;
+        //     // alert(`Session Expired! Please login to save scores.`)
+        // } 
+        const donateStripeButton = document.querySelector('#donateStripe');
+        if (donateStripeButton) {
+            donateStripeButton.addEventListener('click', () => {
+                fetch('/create-checkout-session', {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        items: [
+                            { id: 1, quantity: 1 },
+                        ]
+                    })
+                }).then(res => {
+                    if (res.ok) return res.json();
+                    return res.json().then(json => Promise.reject(json));
+                }).then(({ url }) => {
+                    window.location = url;
+                }).catch(e => {
+                    console.log(e);
+                    console.log(window.location)
+                });
+            });
+        }
+    }, []);
+
     const handleChange = event => {
         const { name, value } = event.target;
         setFormState({
@@ -26,7 +59,6 @@ export default function Header() {
             const { data } = await login({
                 variables: { ...formState },
             });
-            console.log(data)
             Auth.login(data.login.token);
         
     };
@@ -136,9 +168,9 @@ export default function Header() {
     return (
         <>
             <header>
-                <img onClick={logoHome} src="./public/images/logo.webp" alt="logo" className="header-logo"/>
+                <img onClick={logoHome} src="/images/logo.webp" alt="logo" className="header-logo"/>
                         <p className='header-tag'>{text}</p>
-                        <p className='header-donate header-elem-position'>Donate</p>
+                        <p id='donateStripe' className='header-donate header-elem-position'>Donate</p>
                         {isLoggedIn ? ( 
                         <p className='header-login header-elem-position' onClick={Auth.logout}>Logout</p>
                     ) : ( 
@@ -204,6 +236,7 @@ export default function Header() {
                     </div>
                     </>
             }
+            
         </>
     );
 }

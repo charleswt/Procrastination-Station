@@ -1,20 +1,24 @@
 {
-    "name": "Procrastination-Station",
+    "name": "procrastination-station",
     "description": "description",
     "scripts": {
-        "dev": "vite",
-        "build": "vite build",
-        "start": "webpack --watch",
-        "vite": "vite",
-        "vBuild": "vite build",
+        "dev:vite": "vite",
+        "dev:webpack": "webpack-dev-server --mode production",
+        "build:webpack": "webpack --mode production",
+        "build:vite": "vite build",
         "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview"
     },
     "dependencies": {
         "@apollo/client": "^3.7.14",
+        "@babel/preset-react": "^7.24.1",
         "@emotion/react": "^11.11.4",
         "@emotion/styled": "^11.11.5",
+        "@fortawesome/free-solid-svg-icons": "^6.5.2",
+        "@fortawesome/react-fontawesome": "^0.2.0",
+        "@mui/icons-material": "^5.15.15",
         "@mui/material": "^5.15.15",
+        "dotenv": "^16.4.5",
         "graphql": "^16.6.0",
         "jwt-decode": "^3.1.2",
         "react": "^18.2.0",
@@ -43,13 +47,13 @@
         "http-server": "^14.1.1",
         "path": "^0.12.7",
         "style-loader": "^3.2.1",
+        "universal-cookie": "^7.1.4",
         "vite": "^4.4.5",
         "webp-loader": "^0.4.0",
         "webpack": "^5.51.1",
         "webpack-cli": "^4.8.0",
         "webpack-dev-server": "^4.0.0",
         "webpack-pwa-manifest": "^4.3.0",
-        "workbox-webpack-plugin": "^6.2.4",
-        "universal-cookie": "^7.1.4"
+        "workbox-webpack-plugin": "^6.2.4"
     }
 }

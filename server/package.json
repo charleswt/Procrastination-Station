@@ -10,14 +10,19 @@
         "seed": "node seeds/seed.js"
     },
     "dependencies": {
-        "jsonwebtoken": "^9.0.2",
         "@apollo/server": "^4.7.1",
         "bcrypt": "^5.0.0",
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
         "dotenv": "^16.4.5",
         "express": "^4.17.2",
-        "express-session": "^1.18.0",
         "graphql": "^16.6.0",
-        "mongoose": "^7.0.2"
+        "jsonwebtoken": "^9.0.2",
+        "jwt-decode": "^4.0.0",
+        "mongoose": "^7.0.2",
+        "stripe": "^15.2.0",
+        "universal-cookie": "^7.1.4",
+        "universal-cookie-express": "^7.1.4"
     },
     "devDependencies": {
         "nodemon": "^2.0.3"

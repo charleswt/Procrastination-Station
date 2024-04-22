@@ -23,14 +23,22 @@ class AuthCookieToken {
         return token && !this.checkExpiration(token) ? true:false;
     }
 
-    checkExpiration(token) {
+    async checkExpiration() {
+        try{
+        console.log('Hello')
+        const token = cookies.get('token_auth');
+        console.log(token)
         const decoded = decode(token);
+        console.log(decoded)
 
         if(decoded.exp < Date.now()/1000) {
             cookies.remove('token_auth');
             return true;
         }
         return false;
+        }catch(err){
+            console.error(err)
+        }
     }
 }
 

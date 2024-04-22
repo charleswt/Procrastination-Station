@@ -1,8 +1,9 @@
 const express = require('express');
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
+const {authMiddleware} = require('./utils/auth')
+const cookiesMiddleware = require('universal-cookie-express');
 const path = require('path');
-
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
@@ -19,17 +20,57 @@ const startApolloServer = async () => {
 
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
-  
-  // if (process.env.NODE_ENV === 'production' || !process.env.NODE_ENV) {
-  //   app.use(express.static(path.join(__dirname, '../client/dist')));
-    
-  //   app.get('*', (req, res) => {
-  //     res.sendFile(path.join(__dirname, '../client/index.html'));
-  //   });
-  // }
-  
-  app.use('/graphql', expressMiddleware(server));
+  app.use(cookiesMiddleware()).use(function (req, res, next) {
 
+    req.token = req.universalCookies.get('token_auth')
+    next()
+  });
+
+  const stripe = require('stripe')(process.env.STRIPE_KEY)
+  const cors = require('cors')
+
+  app.use(cors({ origin: path, }))
+
+  const storeItems = new Map([
+    [ 1, { priceInCents: 100, name: "Donate" }]
+  ])
+
+  app.post("/create-checkout-session", async (req,res)=>{
+    try{
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        mode: "payment",
+        line_items: req.body.items.map(item => {
+          const storeItem = storeItems.get(item.id)
+          return{
+            price_data: {
+              currency: 'usd',
+              product_data: {
+                name: storeItem.name
+              },
+              unit_amount: storeItem.priceInCents
+            },
+            quantity: item.quantity
+          }
+        }),
+        success_url: `${process.env.CLIENT_URL}/success`,
+        cancel_url: `${process.env.CLIENT_URL}/`,
+        
+      })
+      res.json({ url: session.url})
+    }catch(err){
+      console.log(err)
+    }
+  })
+
+  app.use(express.static(path.join(__dirname, '../client/dist')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+  });
+
+  app.use('/graphql', expressMiddleware(server, {context:authMiddleware}));
+  
   db.once('open', () => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);

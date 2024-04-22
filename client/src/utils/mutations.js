@@ -31,3 +31,27 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const UPDATE_TTT = gql`
+  mutation updateTtt($outcome: String!) {
+    updateTtt(outcome: $outcome) {
+       ttt
+    }
+  }
+`;
+
+export const UPDATE_SNAKE = gql`
+  mutation updateSnake($lastGamesScore: Int!) {
+    updateSnake(lastGamesScore: $lastGamesScore) {
+      snake
+    }
+  }
+`;
+
+export const UPDATE_DINO = gql`
+  mutation updateDino($dinoScore: Int!) {
+    updateDino(dinoScore: $dinoScore) {
+      dino
+    }
+  }
+`;
