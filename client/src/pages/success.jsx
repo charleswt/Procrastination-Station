@@ -4,7 +4,7 @@ export default function Success(){
         <p className="success">Thank you for your contribution!</p>
         <a className="go-home-success" href="/">
         <p className="success-home">Go Home</p>
-        <img src="../public/images/arrow.webp" alt="home arrow" className="success-img"/>
+        <img src="./images/arrow.webp" alt="home arrow" className="success-img"/>
         </a>
         </div>
     )

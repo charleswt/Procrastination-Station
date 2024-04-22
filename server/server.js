@@ -53,8 +53,9 @@ const startApolloServer = async () => {
             quantity: item.quantity
           }
         }),
-        success_url: `${path}/success`,
-        cancel_url: `${path}/`,
+        success_url: `${process.env.CLIENT_URL}/success`,
+        cancel_url: `${process.env.CLIENT_URL}/`,
+        
       })
       res.json({ url: session.url})
     }catch(err){
@@ -62,9 +63,8 @@ const startApolloServer = async () => {
     }
   })
 
-  //debug for render
   app.use(express.static(path.join(__dirname, '../client/dist')));
-  //debug for render
+
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/index.html'));
   });
