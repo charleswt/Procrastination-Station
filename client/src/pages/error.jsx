@@ -5,9 +5,12 @@ export default function Error(){
     console.log(error);
 
     return (
-        <div>
+        <div className="error">
             <h1> Page Not Found!</h1> <br></br>
             <p> There was an issue loading your page! </p>
+            <a href='/'>
+            <button> Go Home </button>
+            </a>
         </div>
     );
 }
