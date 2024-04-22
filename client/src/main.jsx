@@ -8,7 +8,6 @@ import Home from './pages/home.jsx'
 import Error from './pages/error.jsx'
 import Snake from './pages/SnakeGame.jsx'
 import TTT from './pages/ttt.jsx'
-import Pong from './pages/pong.jsx'
 import Dino from './pages/dino.jsx'
 import Terms from './pages/terms.jsx'
 import Contact from './pages/contact.jsx'
@@ -19,7 +18,7 @@ const router = createBrowserRouter([
     {
       path: '/',
       element: <App />,
-      error: <Error />,
+      errorElement: <Error />,
       children: [
         {
           index: true, 
@@ -36,10 +35,6 @@ const router = createBrowserRouter([
           {
             path: '/ttt',
             element: <TTT />
-          },
-          {
-            path: '/pong',
-            element: <Pong />
           },
           {
             path: '/terms',
