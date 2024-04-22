@@ -55,6 +55,7 @@ This project is licensed under the MIT License. See the [MIT License](https://gi
   This project was developed by: <br/>
   [Charles Tiffany](https://github.com/charleswt/).<br/>
   [Robert Solorzano](https://github.com/robertsolorzano/).<br/>
+
   [Manya](https://github.com/manyanara/).
 
   ### How You Can Contribute
