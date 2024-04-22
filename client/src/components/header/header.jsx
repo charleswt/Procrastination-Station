@@ -22,7 +22,7 @@ export default function Header() {
         const donateStripeButton = document.querySelector('#donateStripe');
         if (donateStripeButton) {
             donateStripeButton.addEventListener('click', () => {
-                fetch(`https://procrastination-station-4w0w.onrender.com//create-checkout-session`, {
+                fetch(`https://procrastination-station-4w0w.onrender.com/create-checkout-session`, {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
