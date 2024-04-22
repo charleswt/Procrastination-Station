@@ -62,6 +62,9 @@ const startApolloServer = async () => {
     }
   })
 
+  //debug for render
+  app.use(express.static(path.join(__dirname, '../client/dist')));
+
   app.use('/graphql', expressMiddleware(server, {context:authMiddleware}));
   
   db.once('open', () => {
