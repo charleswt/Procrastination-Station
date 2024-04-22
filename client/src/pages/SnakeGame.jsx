@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp, faArrowDown, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import GameBoard from '../components/snake/GameBoard';
 import { UPDATE_SNAKE } from '../utils/mutations';
 import { GET_ME } from '../utils/queries';
@@ -16,7 +18,7 @@ const SnakeGame = () => {
   const [updateSnake] = useMutation(UPDATE_SNAKE);
   const { loading, error, data, refetch } = useQuery(GET_ME);
 
-  const BOARD_SIZE = 15;
+  const BOARD_SIZE = 24;
   const SPEED = 100;
 
   useEffect(() => {
@@ -165,39 +167,93 @@ const SnakeGame = () => {
     alignItems: 'center',
     height: '100vh'
   };
-
+  
+  const titleContainerStyle = {
+    textAlign: 'center',
+  };
+  
+  const titleStyle = {
+    fontSize: '2em',
+  };
+  
+  const scoreBoardStyle = {
+    border: '1px solid black',
+    backgroundColor: '#4682B4',
+    borderRadius: '4px',
+    padding: '10px',
+    position: 'relative',
+  };
+  
+  const iconContainerStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    position: 'relative',
+  };
+  
+  const arrowButtonStyle = {
+    margin: '5px',
+    borderRadius: '50%',
+    padding: '10px',
+    border: '2px solid black',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.7)',
+  };
+  
+  const leftArrowButtonStyle = {
+    ...arrowButtonStyle,
+    marginRight: '50px',
+  };
+  
   return (
     <div style={centeredStyle}>
-      <div style={{ textAlign: 'center' }}>
-        <h2>Snake Game</h2>
-        {!isLoggedIn && (
-          <p>Please <a href="/login">Login</a> or <a href="/signup">Signup</a> to keep track of scores</p>
-        )}
+      <div style={titleContainerStyle}>
+        <h2 style={titleStyle}>Snake Game</h2>
         {!gameStarted ? (
           <button onClick={startGame}>Start Game</button>
         ) : (
           <>
-            <GameBoard snake={snake} food={food} boardSize={BOARD_SIZE} />
-            <div className="score">Score: {score}</div>
-            {isLoggedIn && <div className="high-score">High Score: {data.getMe.snake}</div>}
-            {gameOver ? (
+            {gameOver && (
               <div>
                 <div className="game-over">Game Over!</div>
                 <button onClick={startGame}>Restart Game</button>
               </div>
-            ) : (
-              <div className="direction-buttons">
-                <button onClick={() => handleDirectionChange('UP')}>Up</button>
-                <button onClick={() => handleDirectionChange('DOWN')}>Down</button>
-                <button onClick={() => handleDirectionChange('LEFT')}>Left</button>
-                <button onClick={() => handleDirectionChange('RIGHT')}>Right</button>
+            )}
+            <div>
+            <GameBoard snake={snake} food={food} boardSize={BOARD_SIZE} />
+            <div style={scoreBoardStyle}>
+              <div className="score">Score: {score}</div>
+              {isLoggedIn && <div className="high-score">High Score: {data.getMe.snake}</div>}
+            </div>
+            </div>
+            <div style={iconContainerStyle}>
+              <button style={{ ...arrowButtonStyle, borderColor: 'green' }} onClick={() => handleDirectionChange('UP')}>
+                <FontAwesomeIcon icon={faArrowUp} size="2x" />
+              </button>
+              <div style={{ display: 'flex' }}>
+                <button style={{ ...arrowButtonStyle, ...leftArrowButtonStyle, borderColor: '#FF69F8' }} onClick={() => handleDirectionChange('LEFT')}>
+                  <FontAwesomeIcon icon={faArrowLeft} size="2x" />
+                </button>
+                <button style={{ ...arrowButtonStyle, borderColor: 'red' }} onClick={() => handleDirectionChange('RIGHT')}>
+                  <FontAwesomeIcon icon={faArrowRight} size="2x" />
+                </button>
               </div>
+              <button style={{ ...arrowButtonStyle, borderColor: 'blue' }} onClick={() => handleDirectionChange('DOWN')}>
+                <FontAwesomeIcon icon={faArrowDown} size="2x" />
+              </button>
+            </div>
+  
+            {!isLoggedIn && (
+              <p>Please login or signup to keep track of high scores</p>
             )}
           </>
         )}
       </div>
     </div>
   );
+  
+
+
+
 };
 
 export default SnakeGame;

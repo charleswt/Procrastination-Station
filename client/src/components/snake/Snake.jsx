@@ -8,6 +8,7 @@ const Snake = ({ snake }) => {
     width: '20px',
     height: '20px',
     backgroundColor: 'green',
+    borderRadius: '4px',
   });
 
   return (

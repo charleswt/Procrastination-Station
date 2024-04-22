@@ -8,6 +8,7 @@ const Food = ({ food }) => {
     width: '20px',
     height: '20px',
     backgroundColor: 'red',
+    borderRadius: '4px', 
   };
 
   return <div className="food" style={foodStyle}></div>;
