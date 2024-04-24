@@ -17,10 +17,6 @@ type Auth {
 type Query {
   getUsers: [User]
   getMe: User
-  getTtt: String
-  getSnake: Int
-  getPong: Int
-  getDino: Int
 }
 
 type Mutation {
@@ -28,7 +24,7 @@ type Mutation {
   login(username: String!, password: String!): Auth
   updateTtt(outcome: String!): User
   updateSnake(lastGamesScore: Int!): User
-  updatePong(pong: String!): User
+  updatePong(pong: Int!): User
   updateDino(dino: Int!): User
 }
 `

@@ -8,17 +8,11 @@ export default function Header() {
     const isLoggedIn = Auth.getToken();
     const [formState, setFormState] = useState({ username: '', password: '' });
     const [login] = useMutation(LOGIN_USER);
-    const [signUp] = useMutation(ADD_USER);
+    const [addUser] = useMutation(ADD_USER);
     const [loginForm, setLogin] = useState(false);
     const [signupForm, setSignup] = useState(false);
 
-    // STRIPE FETCH //
     useEffect(() => {
-        // if(!Auth.checkExpiration){
-        //     console.log(Auth.checkExpiration)
-        //     // Auth.logout;
-        //     // alert(`Session Expired! Please login to save scores.`)
-        // } 
         const donateStripeButton = document.querySelector('#donateStripe');
         if (donateStripeButton) {
             donateStripeButton.addEventListener('click', () => {
@@ -39,7 +33,6 @@ export default function Header() {
                     window.location = url;
                 }).catch(e => {
                     console.log(e);
-                    console.log(window.location)
                 });
             });
         }
@@ -59,17 +52,23 @@ export default function Header() {
             const { data } = await login({
                 variables: { ...formState },
             });
+            console.log({ data })
             Auth.login(data.login.token);
         
     };
 
     const handleSignupFormSubmit = async event => {
         event.preventDefault();
-            const { data } = await signUp({
+        
+            const addedUser = await addUser({
                 variables: { ...formState },
             });
-             //when grabbing token from data make sure you are referencing resolvers in server utils
-            Auth.login(data.addUser.token);
+            if(addedUser){
+            const { data } = await login({
+                variables: { ...formState },
+            });
+            Auth.login(data.login.token);
+        }
     };
 
     const toggleLogin = () => {
@@ -124,9 +123,9 @@ export default function Header() {
     const [indexNum, setIndexNum] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
     const [text, setText] = useState('');
-    const time = 2000; // amount of time between words
+    const time = 2000;
     const brand = ["Procrastination Station"]
-    const [delta, setDelta] = useState(300 -Math.random() * 100) // how fast each letter is typed
+    const [delta, setDelta] = useState(300 -Math.random() * 100) 
 
     useEffect(()=> {
         let ticker= setInterval(()=>{
