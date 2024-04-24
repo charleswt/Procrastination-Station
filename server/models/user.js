@@ -14,14 +14,14 @@ const userSchema = new Schema({
     ttt: {
         type: String,
         required: true,
+        default: "Wins: 0 Draws: 0 Losses: 0",
     },
     snake: {
         type: Number,
         required: true,
-        default: 0,
     },
     pong: {
-        type: String,
+        type: Number,
         required: true,
     },
     dino: {

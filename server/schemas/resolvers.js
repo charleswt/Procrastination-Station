@@ -9,22 +9,31 @@ const resolvers = {
         },
         getMe: async (parent, args, context) => {
             const user = await User.findOne({ username: context.user.username });
-
             return user;
         },
     },
     Mutation: {
-        addUser: async (parent, { username, password })=>{
-            const ttt = 'Wins: 0 Draws: 0 Losses: 0';
+        addUser: async (parent, { username, password }) => {
             const snake = 0;
             const pong = 0;
             const dino = 0;
-            try{
-                const user = User.create({ username, password, ttt, snake, pong, dino })
-                const token = packToken(user)
-                return { token, user }
-            } catch (err){
-                console.log(err,'Error creating user');
+            const ttt = "Wins: 0 Draws: 0 Losses: 0";
+            try {
+                // Check if username is already in use
+                const existingUser = await User.findOne({ username });
+                if (existingUser) {
+                    return new Error('Username already exists');
+                }
+        
+                // Create user
+                const user = await User.create({ username, password, ttt, snake, pong, dino });
+                console.log(user)
+                const token = packToken(user);
+                
+                return { token, user };
+            } catch (error) {
+                console.error('Error creating user:', error);
+                return new Error('Failed to create user');
             }
         },
         login: async ( parent, { username, password })=> {
@@ -51,13 +60,10 @@ const resolvers = {
                 
                 if(outcome === "2"){
                     wins++;
-                    console.log(wins, "wins");
                 } else if (outcome === "0"){
                     draws++;
-                    console.log(draws, "draws");
                 } else {
                     losses++;
-                    console.log(losses, "losses");
                 }
                 user.ttt = `Wins: ${wins} Draws: ${draws} Losses: ${losses}`;
 
@@ -81,16 +87,17 @@ const resolvers = {
             }
           },
         updatePong: async (_, { username, pong }) => {
-            
+            // future addition
         },
-        
-        updateDino: async (_, { dinoScore }, context) => {
+        updateDino: async (_, { dino }, context) => {
+            console.log('hello')
             const user = await User.findOne({ username: context.user.username });
+            console.log('hello')
             try{
-                if (dinoScore > user.dino){
-                    user.dino = dinoScore;
+                if (dino > user.dino){
+                    user.dino = dino;
                     user.save();
-                }
+                }            console.log('hello')
                 return user;
             } catch(err){
                 console.log(err);

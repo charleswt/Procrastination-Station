@@ -1,78 +1,96 @@
-import './style.css'
-import { useState, useEffect } from 'react';
-import { UPDATE_DINO } from '../../utils/mutations';
-import { useMutation, useQuery } from '@apollo/client';
-import { GET_ME } from '../../utils/queries'
+import "./style.css";
+import React, { useState, useRef, useEffect } from "react";
+import { UPDATE_DINO } from "../../utils/mutations";
+import { GET_ME } from "../../utils/queries";
+import { useMutation, useQuery } from "@apollo/client";
 
-export default function DinoGame(){
+export default function DinoGame() {
+  const [jump, setJump] = useState("");
+  const [score, setScore] = useState(0);
 
-    let [jump, setJump] = useState("")
-    let [score, setScore] = useState(0)
-    // let dinoScore = ()=> {localStorage.setItem('dinoScore', score);} 
-    // let savedScore = localStorage.getItem('dinoScore')
-   
-    const updateDino = useMutation(UPDATE_DINO)
-    const { loading, error, data, refetch } = useQuery(GET_ME);
-    // useEffect(()=>{
-    //     if (score > savedScore){
-    //         dinoScore(score)
-    //     }
-    // }, [score])
+  const [updateDino] = useMutation(UPDATE_DINO);
+  const { loading, data } = useQuery(GET_ME);
+  const [highScore, setHighScore] = useState(0)
 
-    function keyDown(){
-        if (jump === ""){
-            setJump("jump")
-        } 
+  useEffect(()=>{
+    if(data && !loading){
+        setHighScore(data.getMe.dino)
+        console.log(data.getMe.dino)
+        console.log(score)
+    }  
+    
+  }, [data, score, highScore])
 
-        setTimeout(function(){
-            setJump("")
-        }, 300)
+  useEffect(() => {
+    if (data && !loading) {
+      if (score > data.getMe.dino) {
+        const updateDinoScore = async (score) => {
+          try {
+            console.log(score)
+            await updateDino({ variables: { dino: score } });
+          } catch (err) {
+            console.log("Cannot update Dino Score:", err);
+          }
+        };
+        updateDinoScore(score);
+        console.log(updateDinoScore(score))
+      }
     }
-// checking positions of dino and cactus if they collide, send an alert 
-    let isAlive = setInterval(function(){
-        // getting dino Y position and cactus x position
-        let dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue("top"))
-        let cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue("left"))
+  }, [score, data, loading]);
 
-        //detect collision
-        if(cactusLeft < 50 && cactusLeft > 0 && dinoTop >= 140){
-            // collision
-            alert('you died')
-            setScore(0)
-            return false
+  const dinoRef = useRef(null);
+  const cactusRef = useRef(null);
 
+  function keyDown() {
+    if (jump === "") {
+      setJump("jump");
+      setTimeout(() => setJump(""), 450);
+    }
+  }
+
+  function startGame() {
+    if (score === 0) {
+      let alive = setInterval(async () => {
+        let dinoTop = parseInt(
+          window.getComputedStyle(dinoRef.current).getPropertyValue("top")
+        );
+        let cactusLeft = parseInt(
+          window.getComputedStyle(cactusRef.current).getPropertyValue("left")
+        );
+
+        if (cactusLeft <= 50 && cactusLeft > 0 && dinoTop >= 140) {
+          console.log("Collision detected");
+          clearInterval(alive);
+          setScore(0);
+          alive = 0;
+        }
+      }, 100);
+
+      const incrementScore = setInterval(() => {
+        if (alive) {
+          setScore(score => score + 1);
         } else {
-            setScore((score+1));
-            return true;
+          clearInterval(incrementScore);
         }
-    },500)
-// adding to score if alive checking each second
-    setInterval(function(){
-        if (isAlive){
-            setScore((score+1));
-        } 
-    }, 700)
+      }, 1000);
+    }
+  }
+  
 
-    // using mutation to set score in database, mutation already checks if current score is more than saved score
-    const updateDinoScore = async ()=>{
-        try{
-            await updateDino({
-                variables: {
-                    dinoScore: score,
-                },
-                refetchQueries: [{query: GET_ME}]
-            })
-        } catch(err){
-            console.log(err, 'Cannot updated Dino Score');
-        }
-    };
 
-    return (
-        <div className="game">
-            <div className= {jump} id="dino" onClick={keyDown}></div>
-            <div id="cactus"></div>
-            <br></br>
-            <div id="score"> High Score: {score}</div>
-        </div>
-    )
+  return (
+    <div className="game">
+      {data && <div className="dino-highscore" id="dinoScore">High Score: {highScore}</div>}
+      <div className={jump} ref={dinoRef} id="dino"></div>
+      <div ref={cactusRef} id="cactus"></div>
+      <br />
+      <div id="score">Score: {score}</div>
+      <button className="dino-jump-btn" onClick={keyDown}>
+        Jump
+      </button>
+      <button className="dino-start-btn" onClick={startGame}>
+        Start Game
+      </button>
+    </div>
+  );
 }

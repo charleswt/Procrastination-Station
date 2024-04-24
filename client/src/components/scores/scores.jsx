@@ -7,6 +7,7 @@ export default function ScoreCard() {
 
     useEffect(() => {
         if (data && !loading) {
+            console.log(data)
             document.querySelector('#tttScore').innerHTML = data.getMe.ttt;
             document.querySelector('#dinoScore').innerHTML = `High Score: ${data.getMe.dino}`;
             document.querySelector('#snakeScore').innerHTML = `High Score: ${data.getMe.snake}`;
